@@ -2,3 +2,6 @@
 css/
 js/
 node_modules/
+.sass-cache/
+.css
+.css.map

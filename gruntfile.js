@@ -29,6 +29,7 @@ module.exports = function(grunt){
               eqnull: true,
               browser: true,
               devel: true,
+              node: true,
               globals: {
                 d3:true
               },
