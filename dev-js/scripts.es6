@@ -6,6 +6,37 @@ var generationData = require('../data/generation.json');
     var nestedData = nestData(generationData, ['aeo','tax','scenario']);
     console.log(nestedData);
 
+    var margin = {
+        top: 1,
+        right: 1,
+        bottom: 5,
+        left: 5
+    };
+
+    var svg = d3.select('#chart-0')
+      .append('svg')
+      .attr('width', '100%')
+      .attr('xmlns','http://www.w3.org/2000/svg')
+      .attr('version','1.1')
+      .attr('viewBox', '0 0 100 50')
+      .attr('focusable',false)
+      .attr('aria-labelledby', 'SVGTitle SVGDesc')
+      .attr('role','img');
+
+    svg.append('title')
+        .attr('id', 'SVGTitle')
+        .text('Stacked column graph of energy generation');
+
+    svg.append('desc')
+        .attr('id','SVGDesc')
+        .text('Stacked column graph of energy generation ....'); // TODO: add to description
+
+    svg
+      .append('g')
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+
+
     function nestData(data, nestBy, nestType = 'series'){
         // nestBy = string or array of field(s) to nest by, or a custom function, or an array of strings or functions;
         var prelim,
