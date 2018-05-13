@@ -2,15 +2,7 @@
     color: magenta;
 }
 
-#chart-0 {
-    padding-bottom:50%; // despite the viewBox on the SVG, IE needs the padding hack to render responsive SVG correctly
-}
-
 .chart-container {
-    width: 100%;
-    position: relative;
-}
-
-.chart-container svg {
-    position: absolute;
+    margin: 0 auto;
+    max-width: 760px;
 }
