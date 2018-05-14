@@ -3,48 +3,55 @@ var generationData = require('../data/generation.json');
     /* global Plotly */
 "use strict";
     /* plotly test*/
-    console.log(generationData);
-    console.log(Plotly);
     var nestedData = nestData(generationData, ['aeo','fuel','scenario']);
     console.log(nestedData);
-    var taxLevel = 'baseline';
 
-    nestedData.forEach((aeo, i) => {
+    initPlots('baseline');
+    
+    function makeTraces(aeo, taxLevel){
         var traces = [];
-        aeo.values.forEach(f => {
+        aeo.values.forEach(f => {  // fuel
             var trace = {
                 type: 'bar',
                 name: f.key,
-                x: f.values.map(s => s.key),
-                y: f.values.map(s => s.values.find(v => v.tax === taxLevel).value)
+                x: f.values.map(s => s.key), // scenario, reference, gas, demand, both
+                y: f.values.map(s => {
+                    var match = s.values.find(v => v.tax === taxLevel);
+                    return match !== undefined ? s.values.find(v => v.tax === taxLevel).value : '';
+                })
             };
             traces.push(trace);
         });
-        Plotly.newPlot('chart-' + i, traces, {barmode: 'stack'});
-    });
-     
-   /* var trace1 = {
-      x: ['giraffes', 'orangutans', 'monkeys'],
-      y: [20, 14, 23],
-      name: 'SF Zoo',
-      type: 'bar'
-    };
+        return traces;
+    }
+    function initPlots(taxLevel){
+        nestedData.forEach((aeo, i) => {
+            
+            var chartOptions = {
+                barmode: 'stack',
+                updatemenus: [{
+                    y: 0.8,
+                    yanchor: 'top',
+                    buttons: [{
+                        method: 'animate',
+                        args: ['traces', makeTraces(aeo, 'baseline')],
+                        label: 'Baseline'
+                    }, {
+                        method: 'restyle',
+                        args: ['traces', makeTraces(aeo, 'twenty-five')],
+                        label: '$25'
+                    }, {
+                        method: 'restyle',
+                        args: ['traces', makeTraces(aeo, 'fifty')],
+                        label: '$50'
+                    }]
+                }]
+            };
+            Plotly.newPlot('chart-' + i, makeTraces(aeo, taxLevel), chartOptions);
+        });
+    }
 
-    var trace2 = {
-      x: ['giraffes', 'orangutans', 'monkeys'],
-      y: [12, 18, 29],
-      name: 'LA Zoo',
-      type: 'bar'
-    };
-
-    var data = [trace1, trace2];
-
-    var layout = {barmode: 'stack'};
-
-    Plotly.newPlot('chart-1', data, layout);*/
-
-
-      function nestData(data, nestBy, nestType = 'series'){
+    function nestData(data, nestBy, nestType = 'series'){
         // nestBy = string or array of field(s) to nest by, or a custom function, or an array of strings or functions;
         var prelim,
             nestByArray;
