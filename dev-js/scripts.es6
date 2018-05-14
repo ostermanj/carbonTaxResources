@@ -1,14 +1,43 @@
-var generationData = require('../data/generation.json');
+const d3 = require('d3-collection');
+const generationData = require('../data/generation.json');
 (function(){
-    /* global Plotly */
+    /* global Highcharts */
 "use strict";
-    /* plotly test*/
     var nestedData = nestData(generationData, ['aeo','fuel','scenario']);
     console.log(nestedData);
 
-    initPlots('baseline');
+    function initCharts(taxLevel){
+        nestedData.forEach((aeo, i) => { // ie 2011 and 2016 
+            var options = {
+                chart: {
+                    type: 'column'
+                },
+                 // to do: colors
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
+                series: aeo.values.map(f => {
+                    return {
+                        name: f.key,
+                        data: f.values.map(s => {
+                            var match = s.values.find(v => v.tax === taxLevel);
+                            if ( match !== undefined) {
+                                return [s.key, match.value];
+                            }
+                        })
+                    };
+                })
+            };  
+
+
+            Highcharts.chart('chart-' + i, options);
+        });
+    }
     
-    function makeTraces(aeo, taxLevel){
+    initCharts('baseline');
+/*    function makeTraces(aeo, taxLevel){
         var traces = [];
         aeo.values.forEach(f => {  // fuel
             var trace = {
@@ -49,7 +78,7 @@ var generationData = require('../data/generation.json');
             };
             Plotly.newPlot('chart-' + i, makeTraces(aeo, taxLevel), chartOptions);
         });
-    }
+    } */
 
     function nestData(data, nestBy, nestType = 'series'){
         // nestBy = string or array of field(s) to nest by, or a custom function, or an array of strings or functions;
@@ -90,7 +119,7 @@ var generationData = require('../data/generation.json');
             }
             
             return rtn;
-        }, Plotly.d3.nest());
+        }, d3.nest());
     }
 
 

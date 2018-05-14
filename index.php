@@ -1,4 +1,4 @@
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/highcharts.js"></script>
 <link rel="stylesheet" type="text/css" href="http://0.0.0.0:8000/dev-css/styles.css" />
 <p id="testP">Hello there!</p>
 <div id="chart-0" class="chart-container"></div>
