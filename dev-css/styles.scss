@@ -1,8 +1,97 @@
-#testP {
-    color: magenta;
+.highcharts-xaxis-labels > span {
+    text-align: center;
 }
 
-.chart-container {
-    margin: 0 auto;
-    max-width: 760px;
+/*
+ * overrides to highcharts css
+ */
+.highcharts-background {
+    fill: none;
+}
+ /* font */
+
+ .highcharts-container {
+    font-family: inherit;
+    font-size: 0.85em;
+    line-height: inherit;
+    //background: transparent url('//www.rff.org/files/rff-logo-small.png') no-repeat 45px bottom;
+    //background-image-size: 50%;
+ }
+
+.highcharts-title {
+    font-size:1em;
+}
+
+.highcharts-yaxis .highcharts-axis-title, .highcharts-subtitle {
+    font-style: italic;
+
+}
+
+.highcharts-axis-labels, .highcharts-legend-item text {
+    font-size: 0.85em;
+  
+}
+
+.highcharts-axis-labels, .highcharts-subtitle, .highcharts-legend-item text {
+      fill: #58585b;
+      font-weight: normal;
+}
+
+.highcharts-credits {
+    font-size: 0.7em;
+    &:hover {
+        font-size: 0.7em;
+    }
+}
+
+/* colors */
+
+.highcharts-color-0 {
+  fill: #002d55;
+  stroke: #002d55;
+}
+
+.highcharts-color-1 {
+  fill: #706f73;
+  stroke: #706f73;
+}
+
+.highcharts-color-2 {
+  fill: #387b2b;
+  stroke: #387b2b;
+}
+
+.highcharts-color-3 {
+  fill: #572600;
+  stroke: #572600;
+}
+
+.highcharts-color-4 {
+  fill: #de791b;
+  stroke: #de791b;
+}
+
+.highcharts-color-5 {
+  fill: #0064af;
+  stroke: #0064af;
+}
+
+.highcharts-color-6 {
+  fill: lighten(#706f73, 20%);
+  stroke: lighten(#706f73, 20%);
+}
+
+.highcharts-color-7 {
+  fill: lighten(#387b2b, 20%);
+  stroke: lighten(#387b2b, 20%);
+}
+
+.highcharts-color-8 {
+  fill: lighten(#387b2b, 20%);
+  stroke: lighten(#387b2b, 20%);
+}
+
+.highcharts-color-9 {
+  fill: lighten(#572600, 20%);
+  stroke: lighten(#572600, 20%);
 }

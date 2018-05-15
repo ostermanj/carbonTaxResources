@@ -20,6 +20,7 @@
     "grunt-cssc": "*",
     "grunt-htmlhint": "*",
     "grunt-postcss": "^0.8.0",
+    "highcharts-grouped-categories": "^1.1.3",
     "htmlhint": "^0.9.13",
     "matchdep": "*"
   }

@@ -8,7 +8,7 @@
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2016,
     "scenario": "reference",
     "value": 1293.215
@@ -50,7 +50,7 @@
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2016,
     "scenario": "gas",
     "value": 723.5
@@ -92,7 +92,7 @@
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2016,
     "scenario": "demand",
     "value": 1366.6
@@ -134,7 +134,7 @@
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2016,
     "scenario": "reference",
     "value": 1396.6
@@ -176,7 +176,7 @@
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2016,
     "scenario": "gas",
     "value": 963.2
@@ -218,7 +218,7 @@
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2016,
     "scenario": "demand",
     "value": 1476.7
@@ -260,7 +260,7 @@
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2016,
     "scenario": "reference",
     "value": 1024.2
@@ -302,7 +302,7 @@
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2016,
     "scenario": "gas",
     "value": 709.3
@@ -344,7 +344,7 @@
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2016,
     "scenario": "demand",
     "value": 1078.8
@@ -386,7 +386,7 @@
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "reference",
     "value": 891.1
@@ -428,7 +428,7 @@
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "gas",
     "value": 550.4
@@ -470,7 +470,7 @@
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "demand",
     "value": 1159.1
@@ -512,7 +512,7 @@
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "both",
     "value": 763.5
@@ -554,7 +554,7 @@
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "reference",
     "value": 1271.7
@@ -596,7 +596,7 @@
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "gas",
     "value": 707.2
@@ -638,7 +638,7 @@
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "demand",
     "value": 1522.6
@@ -680,7 +680,7 @@
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "both",
     "value": 937.4
@@ -722,7 +722,7 @@
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "reference",
     "value": 1652.4
@@ -764,7 +764,7 @@
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "fuel": "natural_gas",
     "aeo": 2011,
     "scenario": "both",
     "value": 1195.7

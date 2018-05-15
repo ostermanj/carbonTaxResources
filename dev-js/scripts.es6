@@ -1,42 +1,121 @@
+/* global Highcharts */
+/* exported HighchartsGroupedCategories, updateChart */
 const d3 = require('d3-collection');
 const generationData = require('../data/generation.json');
+const HighchartsGroupedCategories = require('highcharts-grouped-categories')(Highcharts);
+import { CreateDropdown } from './dropdown.js';
 (function(){
-    /* global Highcharts */
-"use strict";
-    var nestedData = nestData(generationData, ['aeo','fuel','scenario']);
-    console.log(nestedData);
-
-    function initCharts(taxLevel){
-        nestedData.forEach((aeo, i) => { // ie 2011 and 2016 
-            var options = {
-                chart: {
-                    type: 'column'
+    "use strict";
+    var chart0;
+    var nestedData = nestData(generationData, ['fuel','aeo','scenario']);
+    console.log(generationData);
+    console.log(nestedData); 
+    
+    function initChart(taxLevel){
+        var options = {
+            chart: {
+                type: 'column',  
+                height: '66%'
+               // spacingLeft:5,
+               // spacingTop: 0
+            },
+            credits: {
+                text: 'Resources for the Future',
+                position: {
+                    align: 'center',                     
+                    
                 },
-                 // to do: colors
-                plotOptions: {
-                    column: {
-                        stacking: 'normal'
+                href: '//www.rff.org' 
+            },
+            title: {
+               text: 'Generation Shares under Baseline Scenarios, 2030',
+                align: 'left',
+                margin: 30,
+                x:-10
+                
+
+            },
+            subtitle: {
+                text: 'terawatt hours',
+                align: 'left',
+                x:-10
+                
+            },
+            colors: ['#002d55','#706f73','#387b2b','#572600','#de791b','#0064af'],
+            plotOptions: {
+                column: {
+                    stacking: 'normal'
+                }
+            },
+            series: createSeries(taxLevel),
+            xAxis: {
+                categories: ['Standard Scenario', 'High Gas Prices', 'High Demand', 'High Demand<br />and Gas Prices'],
+                labels: {
+                    useHTML: true,
+                    formatter: function(){
+                        console.log();
+                        return `${ this.value !== 'High Demand and Gas Prices' ? 'AEO 2011 | AEO 2016' : 'AEO 2011 | n.a.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'}<br />${this.value}`;
                     }
+                }
+            },
+            yAxis: {
+                reversedStacks: false,
+                title: {
+                    text: null,
+                    
                 },
-                series: aeo.values.map(f => {
-                    return {
-                        name: f.key,
-                        data: f.values.map(s => {
-                            var match = s.values.find(v => v.tax === taxLevel);
-                            if ( match !== undefined) {
-                                return [s.key, match.value];
-                            }
-                        })
-                    };
-                })
-            };  
-
-
-            Highcharts.chart('chart-' + i, options);
-        });
+                max:5000
+            },
+            legend: {
+                padding:13
+            }
+        };    
+        chart0 = Highcharts.chart('chart-0', options);
     }
     
-    initCharts('baseline');
+    function createSeries(taxLevel){
+        var array = [];
+        nestedData.forEach((f,i) => {
+            f.values.reverse().forEach((aeo, j) => {
+                array.push({
+                    name: f.key, 
+                    data: aeo.values.map(s => { 
+                        var match = s.values.find(v => v.tax === taxLevel);
+                        if ( match !== undefined) {
+                            return [s.key, match.value];
+                        }
+                    }),
+                    stack: aeo.key,
+                    linkedTo: j === 0 ? undefined : ':previous',
+                    colorIndex: i
+                });
+            });
+        });
+        return array;
+    }
+    function updateChart(){
+        /* jshint validthis: true */
+        console.log(this.value);
+        var seriesIndex = 0;
+        nestedData.forEach(f => {
+            f.values.forEach(aeo => {
+                chart0.series[seriesIndex].setData(aeo.values.map(s => { 
+                    var match = s.values.find(v => v.tax === this.value);
+                    console.log(match);
+                    if ( match !== undefined) {
+                        return [s.key, match.value];
+                    }
+                }));
+                seriesIndex++;
+            });
+        });
+    }
+    window.updateChart = updateChart;
+    initChart('baseline');
+    CreateDropdown();
+
+
+    //initCharts('baseline');
 /*    function makeTraces(aeo, taxLevel){
         var traces = [];
         aeo.values.forEach(f => {  // fuel
