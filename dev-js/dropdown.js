@@ -1,8 +1,8 @@
 export const CreateDropdown = function(){
     var dict = [
         ['baseline', 'No carbon tax'],
-        ['twenty-five', '$25 / ton'],
-        ['fifty', '$50 / ton']
+        ['twenty-five', '$25/ton tax'],
+        ['fifty', '$50/ton tax']
     ];
     var dropdown = document.createElement('select');
     dropdown.setAttribute('id','hc-dropdown-0');
@@ -14,5 +14,7 @@ export const CreateDropdown = function(){
         dropdown.appendChild(option);
     });
     document.getElementById('chart-0').insertAdjacentHTML('beforebegin', dropdown.outerHTML);
-    document.getElementById('hc-dropdown-0').onchange = updateChart;
+    document.getElementById('hc-dropdown-0').onchange = function(e){
+        updateChart(this.value, e);
+    }
 };

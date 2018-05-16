@@ -1,90 +1,114 @@
 /* global Highcharts */
 /* exported HighchartsGroupedCategories, updateChart */
-const d3 = require('d3-collection');
+const d3 = require('d3-collection'); // requiring subset of D3 to handle the data nesting
 const generationData = require('../data/generation.json');
-const HighchartsGroupedCategories = require('highcharts-grouped-categories')(Highcharts);
 import { CreateDropdown } from './dropdown.js';
+import { HighchartsDefaults } from './highcharts-defaults.js';
 (function(){
     "use strict";
+    var isInitialized = false;
+    var initTimer = setTimeout(() => {
+        console.log('timer');
+        isInitialized = true;
+        initChart();
+    },5000);
+    if ( document.fonts !== undefined ){ // highcharts lays out the charts according to font characteristics, how much space
+                                         // a line or paragraph or label takes up, for instance. If it loads before the fonts are
+                                         // ready, it may not look right, and the layout will change slightly when the chart is
+                                         // updated. this fn tests the browser for document.fonts (FontFaceSet) support and if supported
+                                         // fires init() when the fonts are ready. otherwise it fires on window load (which could take some time),
+                                         // with a timed back up in case load takes too long
+        document.fonts.ready.then(() => {
+            clearTimeout(initTimer);
+            if ( !isInitialized ){
+                isInitialized = true;
+                initChart();
+            }
+        });
+    } else {
+        window.addEventListener('load', function(){
+            clearTimeout(initTimer);
+            if ( !isInitialized ){
+                isInitialized = true;
+                initChart();
+            }
+        });
+    }
+    Highcharts.setOptions(HighchartsDefaults);
     var chart0;
     var nestedData = nestData(generationData, ['fuel','aeo','scenario']);
     console.log(generationData);
     console.log(nestedData); 
-    
-    function initChart(taxLevel){
-        var options = {
-            chart: {
-                type: 'column',  
-                height: '66%'
-               // spacingLeft:5,
-               // spacingTop: 0
-            },
-            credits: {
-                text: 'Resources for the Future',
-                position: {
-                    align: 'center',                     
-                    
-                },
-                href: '//www.rff.org' 
+      
+    function initChart(){
+        var options = { 
+            chart: { 
+                type: 'column',   
+                height: '70%'
             },
             title: {
-               text: 'Generation Shares under Baseline Scenarios, 2030',
-                align: 'left',
-                margin: 30,
-                x:-10
-                
-
+               text: 'Electricity generation in 2030 by source, with no carbon tax',
             },
             subtitle: {
-                text: 'terawatt hours',
-                align: 'left',
-                x:-10
-                
+                text: 'Annual Energy Outlook estimates of power generation in 2030. The "old" estimate is from 2011; the "new" is from 2016. Carbon-tax levels change over time—dollar amounts correspond to 2018 levels.', 
             },
-            colors: ['#002d55','#706f73','#387b2b','#572600','#de791b','#0064af'],
             plotOptions: {
                 column: {
                     stacking: 'normal'
                 }
-            },
-            series: createSeries(taxLevel),
+            },  
+            series: createSeries(),
+            
             xAxis: {
-                categories: ['Standard Scenario', 'High Gas Prices', 'High Demand', 'High Demand<br />and Gas Prices'],
+                categories: ['Standard Scenario', 'High Gas Prices', 'High Demand', 'High Demand<br />and Gas Prices'], // TO DO: set programatically
                 labels: {
-                    useHTML: true,
-                    formatter: function(){
-                        console.log();
-                        return `${ this.value !== 'High Demand and Gas Prices' ? 'AEO 2011 | AEO 2016' : 'AEO 2011 | n.a.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'}<br />${this.value}`;
-                    }
+                    y: 40 
                 }
             },
             yAxis: {
                 reversedStacks: false,
-                title: {
-                    text: null,
-                    
+                stackLabels: {
+                      enabled: true,
+                      verticalAlign: 'bottom',
+                      crop: false,
+                      overflow: 'none',
+                      y: 20, 
+                      formatter: function() {
+                        return this.stack;
+                      }
                 },
-                max:5000
-            },
-            legend: {
-                padding:13
+                title: {
+                    text: 'terawatt hours',
+                    align:'high',
+                    rotation: 0,
+                    margin:0,
+                    y: -25,
+                    offset: -75,
+                    x: -10
+                },
+                max:5000, // TO DO: set programmatically
             }
         };    
         chart0 = Highcharts.chart('chart-0', options);
+        window.chart = chart0;
+
     }
-    
-    function createSeries(taxLevel){
+    function setData(aeo, taxLevel){
+        return aeo.values.map(s => { 
+            var match = s.values.find(v => v.tax === taxLevel);
+            console.log(match);
+            if ( match !== undefined) {
+                return [s.key, match.value];
+            }
+        });
+    } 
+    function createSeries(){
         var array = [];
         nestedData.forEach((f,i) => {
             f.values.reverse().forEach((aeo, j) => {
                 array.push({
                     name: f.key, 
-                    data: aeo.values.map(s => { 
-                        var match = s.values.find(v => v.tax === taxLevel);
-                        if ( match !== undefined) {
-                            return [s.key, match.value];
-                        }
-                    }),
+                    data: setData(aeo, 'baseline'),
                     stack: aeo.key,
                     linkedTo: j === 0 ? undefined : ':previous',
                     colorIndex: i
@@ -93,28 +117,23 @@ import { CreateDropdown } from './dropdown.js';
         });
         return array;
     }
-    function updateChart(){
+    function updateChart(taxLevel, e){
+        console.log(taxLevel);
         /* jshint validthis: true */
-        console.log(this.value);
         var seriesIndex = 0;
         nestedData.forEach(f => {
             f.values.forEach(aeo => {
-                chart0.series[seriesIndex].setData(aeo.values.map(s => { 
-                    var match = s.values.find(v => v.tax === this.value);
-                    console.log(match);
-                    if ( match !== undefined) {
-                        return [s.key, match.value];
-                    }
-                }));
+                chart0.series[seriesIndex].setData(setData(aeo, taxLevel));
                 seriesIndex++;
             });
         });
+        console.log(e);
+        chart0.setTitle({text: `Generation Shares with ${e.target.options[e.target.options.selectedIndex].innerText.toLowerCase()}, 2030`});
     }
+    
     window.updateChart = updateChart;
-    initChart('baseline');
+
     CreateDropdown();
-
-
     //initCharts('baseline');
 /*    function makeTraces(aeo, taxLevel){
         var traces = [];
