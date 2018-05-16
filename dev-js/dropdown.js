@@ -15,6 +15,6 @@ export const CreateDropdown = function(){
     });
     document.getElementById('chart-0').insertAdjacentHTML('beforebegin', dropdown.outerHTML);
     document.getElementById('hc-dropdown-0').onchange = function(e){
-        updateChart(this.value, e);
+        updateChart(this.value, e.target.options[e.target.options.selectedIndex].innerText.toLowerCase());
     }
 };
