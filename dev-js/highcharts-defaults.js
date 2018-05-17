@@ -22,7 +22,7 @@ export const HighchartsDefaults = {
         x:-10,
         
     },
-    colors: ['#002d55','#706f73','#387b2b','#572600','#de791b','#0064af'],
+    
     legend: {
         padding:13
 

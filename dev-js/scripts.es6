@@ -39,8 +39,8 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
         },
         subtitle: {
             text: 'Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
-                  '2016 estimates do not have the “high demand and gas prices” scenario. ' + 
-                  '2011 estimates for the “high gas prices” and “high demand” scenarios are not available for the the $50/ton tax option. ' + 
+                  'Estimates from 2016 do not have the “high demand and gas prices” scenario. ' + 
+                  'Estimates from 2011 for the “high gas prices” and “high demand” scenarios are not available for the the $50/ton tax option. ' + 
                   'Carbon-tax levels change over time—dollar amounts correspond to 2018 levels. Source: U.S. Energy Information Administration.',
         },           
         plotOptions: {
@@ -78,11 +78,15 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
                 x: -10
             }, 
             max:5000, // TO DO: set programmatically
+        },
+        tooltip: {
+            valueDecimals: 0,
+            valueSuffix: ' TWh'
         }
-    };
+    }; 
 
     window.optionsCollection[1] = { // second chart's options
-        initialCategory: 'twenty-five',
+        initialCategory: 'twenty-five', 
         chart: { 
             type: 'column',   
             height: 600
@@ -93,9 +97,9 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
             }
         },
         subtitle: {
-            text: 'Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
-                  '2016 estimates do not have the “high demand and gas prices” scenario. ' + 
-                  '2011 estimates for the “high gas prices” and “high demand” scenarios are not available for the the $50/ton tax option. ' + 
+            text: 'LMDI decomposition of emissions reductions from Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
+                  'Estimates from 2016 do not have the “high demand and gas prices” scenario. ' + 
+                  'Estimates from 2011 for the “high gas prices” and “high demand” scenarios are not available for the the $50/ton tax option. ' + 
                   'Carbon-tax levels change over time—dollar amounts correspond to 2018 levels. Source: U.S. Energy Information Administration.',
         },           
         plotOptions: {
@@ -129,10 +133,14 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
                 rotation: 0,
                 margin:0,
                 y: -25,
-                offset: -75,
+                offset: -40,
                 x: -10
             },
             max:3000, // TO DO: set programmatically
+        },
+        tooltip: {
+            valueDecimals: 0,
+            valueSuffix: ' megatons'
         }
     };
 
@@ -217,7 +225,7 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
                     colorIndex: i
                 });
             });
-        });
+        }); 
         return array;
     }
     function updateChart(index, taxLevel){ // NEED TO APPLY TO SPECIFIC INDEX OF WINDOW.CHARTS
@@ -230,7 +238,7 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
                 window.charts[index].series[seriesIndex].setData(setData(aeo, taxLevel, false));
                 seriesIndex++;
             });
-            var titleText = window.optionsCollection[index].title.formatter(window.scenarioDict.find(s => s.key === taxLevel).value.toLowerCase());
+            var titleText = window. optionsCollection[index].title.formatter(window.scenarioDict.find(s => s.key === taxLevel).value.toLowerCase());
             window.charts[index].setTitle({text: titleText});
         });
      //   window.charts[index].setTitle({text: `Electricity generation in 2030 by source, with ${ window.scenarioDict.find(s => s.key === taxLevel).value }`}); // HOW TO HANDLE THIS?

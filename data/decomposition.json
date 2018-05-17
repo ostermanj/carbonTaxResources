@@ -503,6 +503,64 @@
     "category": "emissions intensity reduction",
     "value": 171.8
   },
+
+  {
+    "aeo": "Old",
+    "tax": "fifty",
+    "scenario": "High Gas Prices",
+    "category": "net emissions",
+    "value": null
+  },
+  {
+    "aeo": "Old",
+    "tax": "fifty",
+    "scenario": "High Gas Prices",
+    "category": "demand reduction",
+    "value": null
+  },
+  {
+    "aeo": "Old",
+    "tax": "fifty",
+    "scenario": "High Gas Prices",
+    "category": "generation mix shift",
+    "value": null
+  },
+  {
+    "aeo": "Old",
+    "tax": "fifty",
+    "scenario": "High Gas Prices",
+    "category": "emissions intensity reduction",
+    "value": null
+  },
+  {
+    "aeo": "Old",
+    "tax": "fifty",
+    "scenario": "High Demand",
+    "category": "net emissions",
+    "value": null
+  },
+  {
+    "aeo": "Old",
+    "tax": "fifty",
+    "scenario": "High Demand",
+    "category": "demand reduction",
+    "value": null
+  },
+  {
+    "aeo": "Old",
+    "tax": "fifty",
+    "scenario": "High Demand",
+    "category": "generation mix shift",
+    "value": null
+  },
+  {
+    "aeo": "Old",
+    "tax": "fifty",
+    "scenario": "High Demand",
+    "category": "emissions intensity reduction",
+    "value": null
+  },
+
   {
     "aeo": "Old",
     "tax": "fifty",
