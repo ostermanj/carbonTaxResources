@@ -23,13 +23,13 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
     optionsCollection[0] = { // first chart's options
         chart: { 
             type: 'column',   
-            height: '70%'
+            height: 600
         },
         subtitle: {
             text: 'Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
                   '2016 estimates do not have the “high demand and gas prices” scenario. ' + 
                   '2011 estimates for the “high gas prices” and “high demand” scenarios are not available for the the $50/ton tax option. ' + 
-                  'Carbon-tax levels change over time—dollar amounts correspond to 2018 levels. Source: U.S. Energy Information Administration.'
+                  'Carbon-tax levels change over time—dollar amounts correspond to 2018 levels. Source: U.S. Energy Information Administration.',
         },           
         plotOptions: {
             column: {
