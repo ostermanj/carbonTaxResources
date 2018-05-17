@@ -32,6 +32,11 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
             type: 'column',   
             height: 600
         },
+        title: {
+            formatter: function(scenario){
+                return `Electricity generation in 2030 by source, with ${ scenario }`;
+            }
+        },
         subtitle: {
             text: 'Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
                   '2016 estimates do not have the “high demand and gas prices” scenario. ' + 
@@ -81,6 +86,11 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
         chart: { 
             type: 'column',   
             height: 600
+        },
+        title: {
+            formatter: function(scenario){
+                return `Net emissions and emissions reductions in 2030 by type, with ${ scenario }`;
+            }
         },
         subtitle: {
             text: 'Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
@@ -220,8 +230,10 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
                 window.charts[index].series[seriesIndex].setData(setData(aeo, taxLevel, false));
                 seriesIndex++;
             });
+            var titleText = window.optionsCollection[index].title.formatter(window.scenarioDict.find(s => s.key === taxLevel).value.toLowerCase());
+            window.charts[index].setTitle({text: titleText});
         });
-        window.charts[index].setTitle({text: `Electricity generation in 2030 by source, with ${ window.scenarioDict.find(s => s.key === taxLevel).value }`}); // HOW TO HANDLE THIS?
+     //   window.charts[index].setTitle({text: `Electricity generation in 2030 by source, with ${ window.scenarioDict.find(s => s.key === taxLevel).value }`}); // HOW TO HANDLE THIS?
     }
     
     window.updateChart = updateChart;
