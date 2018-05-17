@@ -2,532 +2,532 @@
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "net emissions",
     "value": 1864.1
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "demand reduction",
     "value": 0
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "generation mix shift",
     "value": 0
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "emissions intensity reduction",
     "value": 0
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "net emissions",
     "value": 1894.7
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "demand reduction",
     "value": 0
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "generation mix shift",
     "value": 0
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "emissions intensity reduction",
     "value": 0
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "net emissions",
     "value": 1917.2
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "demand reduction",
     "value": 0
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "generation mix shift",
     "value": 0
   },
   {
     "aeo": 2016,
     "tax": "baseline",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "emissions intensity reduction",
     "value": 0
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "net emissions",
     "value": 702.5
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "demand reduction",
     "value": 13
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "generation mix shift",
     "value": 1086.7
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "emissions intensity reduction",
     "value": 61.9
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "net emissions",
     "value": 596.6
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "demand reduction",
     "value": 7.1
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "generation mix shift",
     "value": 1223.1
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "emissions intensity reduction",
     "value": 68
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "net emissions",
     "value": 732.2
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "demand reduction",
     "value": 12.3
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "generation mix shift",
     "value": 1118.3
   },
   {
     "aeo": 2016,
     "tax": "twenty-five",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "emissions intensity reduction",
     "value": 54.4
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "net emissions",
     "value": 414.7
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "demand reduction",
     "value": 19
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "generation mix shift",
     "value": 1271.3
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "emissions intensity reduction",
     "value": 159.1
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "net emissions",
     "value": 338.9
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "demand reduction",
     "value": 12.4
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "generation mix shift",
     "value": 1419.6
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "emissions intensity reduction",
     "value": 123.8
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "net emissions",
     "value": 430.4
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "demand reduction",
     "value": 17.6
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "generation mix shift",
     "value": 1312.3
   },
   {
     "aeo": 2016,
     "tax": "fifty",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "emissions intensity reduction",
     "value": 157
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "net emissions",
     "value": 2564.2
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "demand reduction",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "generation mix shift",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "emissions intensity reduction",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "net emissions",
     "value": 2651.9
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "demand reduction",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "generation mix shift",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "emissions intensity reduction",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "net emissions",
     "value": 2747.7
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "demand reduction",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "generation mix shift",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "emissions intensity reduction",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "net emissions",
     "value": 2847.3
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "demand reduction",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "generation mix shift",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "baseline",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "emissions intensity reduction",
     "value": 0
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "net emissions",
     "value": 1703
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "demand reduction",
     "value": 234.5
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "generation mix shift",
     "value": 519.2
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "emissions intensity reduction",
     "value": 107.6
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "net emissions",
     "value": 1881.4
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "demand reduction",
     "value": 243
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "generation mix shift",
     "value": 385.1
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "gas",
+    "scenario": "High Gas Prices",
     "category": "emissions intensity reduction",
     "value": 142.4
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "net emissions",
     "value": 1833.9
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "demand reduction",
     "value": 231.4
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "generation mix shift",
     "value": 564.6
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "demand",
+    "scenario": "High Demand",
     "category": "emissions intensity reduction",
     "value": 117.8
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "net emissions",
     "value": 2009
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "demand reduction",
     "value": 254.7
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "generation mix shift",
     "value": 428.9
   },
   {
     "aeo": 2011,
     "tax": "twenty-five",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "emissions intensity reduction",
     "value": 154.6
   },
   {
     "aeo": 2011,
     "tax": "fifty",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "net emissions",
     "value": 856.3
   },
   {
     "aeo": 2011,
     "tax": "fifty",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "demand reduction",
     "value": 235.3
   },
   {
     "aeo": 2011,
     "tax": "fifty",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "generation mix shift",
     "value": 1300.8
   },
   {
     "aeo": 2011,
     "tax": "fifty",
-    "scenario": "reference",
+    "scenario": "Standard Scenario",
     "category": "emissions intensity reduction",
     "value": 171.8
   },
   {
     "aeo": 2011,
     "tax": "fifty",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "net emissions",
     "value": 1025.4
   },
   {
     "aeo": 2011,
     "tax": "fifty",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "demand reduction",
     "value": 291.6
   },
   {
     "aeo": 2011,
     "tax": "fifty",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "generation mix shift",
     "value": 1209.4
   },
   {
     "aeo": 2011,
     "tax": "fifty",
-    "scenario": "both",
+    "scenario": "High Demand and Gas Prices",
     "category": "emissions intensity reduction",
     "value": 320.8
   }
