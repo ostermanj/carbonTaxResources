@@ -2,10 +2,78 @@
 /* exported HighchartsGroupedCategories, updateChart */
 const d3 = require('d3-collection'); // requiring subset of D3 to handle the data nesting
 const generationData = require('../data/generation.json');
+//const decompositionData = require('../data/decomposition.json');
 import { CreateDropdown } from './dropdown.js';
 import { HighchartsDefaults } from './highcharts-defaults.js';
 (function(){
     "use strict";
+/*
+ * Set up data and options
+ *
+ */ 
+
+    var dataCollection = [];
+    dataCollection[0] = nestData(generationData, ['category','aeo','scenario']);
+    
+    /* set default options */
+    Highcharts.setOptions(HighchartsDefaults);
+      
+    /* set options for the specific charts */
+    var optionsCollection = [];
+    optionsCollection[0] = { // first chart's options
+        chart: { 
+            type: 'column',   
+            height: '70%'
+        },
+        subtitle: {
+            text: 'Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
+                  '2016 estimates do not have the “high demand and gas prices” scenario. ' + 
+                  '2011 estimates for the “high gas prices” and “high demand” scenarios are not available for the the $50/ton tax option. ' + 
+                  'Carbon-tax levels change over time—dollar amounts correspond to 2018 levels. Source: U.S. Energy Information Administration.'
+        },           
+        plotOptions: {
+            column: {
+                stacking: 'normal'
+            }
+        },  
+        series: createSeries(0),
+        
+        xAxis: {
+            categories: ['Standard Scenario', 'High Gas Prices', 'High Demand', 'High Demand<br />and Gas Prices'], // TO DO: set programatically
+            labels: {
+                y: 40 
+            }
+        },
+        yAxis: {
+            reversedStacks: false,
+            stackLabels: {
+                  enabled: true,
+                  verticalAlign: 'bottom',
+                  crop: false,
+                  overflow: 'none',
+                  y: 20, 
+                  formatter: function() {
+                    return this.stack;
+                  }
+            },
+            title: {
+                text: 'terawatt hours',
+                align:'high',
+                rotation: 0,
+                margin:0,
+                y: -25,
+                offset: -75,
+                x: -10
+            },
+            max:5000, // TO DO: set programmatically
+        }
+    };
+
+/*
+ * Set up triggers to initialize charts
+ *
+ */  
+
     var isInitialized = false;
     var initTimer = setTimeout(() => {
         console.log('timer');
@@ -33,68 +101,32 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
     }
     function initialize(){
         isInitialized = true;
-        initChart();
-        CreateDropdown();
-        updateChart('baseline','no carbon tax'); // to do: shd fetch text from key
+        initCharts();
     }
     
-    Highcharts.setOptions(HighchartsDefaults);
     
-    var chart0;
-    var nestedData = nestData(generationData, ['fuel','aeo','scenario']);
-    console.log(generationData);
-    console.log(nestedData); 
-      
-    function initChart(){
-        var options = { 
-            chart: { 
-                type: 'column',   
-                height: '70%'
-            },
-            subtitle: {
-                text: 'Annual Energy Outlook estimates of power generation in 2030. The “old” estimate is from 2011; the “new” is from 2016. Carbon-tax levels change over time—dollar amounts correspond to 2018 levels. Source: U.S. Energy Information Administration.'
-            },
-            plotOptions: {
-                column: {
-                    stacking: 'normal'
-                }
-            },  
-            series: createSeries(),
-            
-            xAxis: {
-                categories: ['Standard Scenario', 'High Gas Prices', 'High Demand', 'High Demand<br />and Gas Prices'], // TO DO: set programatically
-                labels: {
-                    y: 40 
-                }
-            },
-            yAxis: {
-                reversedStacks: false,
-                stackLabels: {
-                      enabled: true,
-                      verticalAlign: 'bottom',
-                      crop: false,
-                      overflow: 'none',
-                      y: 20, 
-                      formatter: function() {
-                        return this.stack;
-                      }
-                },
-                title: {
-                    text: 'terawatt hours',
-                    align:'high',
-                    rotation: 0,
-                    margin:0,
-                    y: -25,
-                    offset: -75,
-                    x: -10
-                },
-                max:5000, // TO DO: set programmatically
-            }
-        };    
-        chart0 = Highcharts.chart('chart-0', options);
-        window.chart = chart0;
+    function initCharts(){
+        window.charts = []; 
+        dataCollection.forEach((dc,i) => {
+            window.charts.push(Highcharts.chart('chart-' + i, optionsCollection[i]));
+            checkSubtitle(i);
+            CreateDropdown(i);
+            updateChart(i, 'baseline','no carbon tax'); // to do: shd fetch text from key
+        });
+    }
 
+    function checkSubtitle(index){
+        var chart = window.charts[index];
+        if ( chart.options.subtitle.verticalAlign === 'bottom' ){
+            var svg = chart.container.querySelector('.highcharts-root');
+            console.log(svg);
+            var viewBoxArray = svg.getAttribute('viewBox').split(' ');
+            viewBoxArray[3] = svg.getBBox().height;
+            svg.setAttribute('height', viewBoxArray[3]);
+            svg.setAttribute('viewBox', viewBoxArray.join(' '));
+        }
     }
+
     function setData(aeo, taxLevel, isInitial){
         return aeo.values.map(s => { 
             var match = s.values.find(v => v.tax === taxLevel);
@@ -104,12 +136,12 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
             }
         });
     } 
-    function createSeries(){
+    function createSeries(index){
         var array = [];
-        nestedData.forEach((f,i) => {
-            f.values.reverse().forEach((aeo, j) => {
+        dataCollection[index].forEach((c,i) => {
+            c.values.reverse().forEach((aeo, j) => {
                 array.push({
-                    name: f.key, 
+                    name: c.key, 
                     data: setData(aeo, 'baseline', true),
                     stack: aeo.key,
                     linkedTo: j === 0 ? undefined : ':previous',
@@ -119,17 +151,17 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
         });
         return array;
     }
-    function updateChart(taxLevel, text){
-        console.log(taxLevel);
+    function updateChart(index, taxLevel, text){ // NEED TO APPLY TO SPECIFIC INDEX OF WINDOW.CHARTS
+        console.log(index, taxLevel, dataCollection);
         /* jshint validthis: true */
         var seriesIndex = 0;
-        nestedData.forEach(f => {
-            f.values.forEach(aeo => {
-                chart0.series[seriesIndex].setData(setData(aeo, taxLevel, false));
+        dataCollection[index].forEach(c => {
+            c.values.forEach(aeo => {
+                window.charts[index].series[seriesIndex].setData(setData(aeo, taxLevel, false));
                 seriesIndex++;
             });
         });
-        chart0.setTitle({text: `Electricity generation in 2030 by source, with ${ text }`});
+        window.charts[index].setTitle({text: `Electricity generation in 2030 by source, with ${ text }`}); // HOW TO HANDLE THIS?
     }
     
     window.updateChart = updateChart;

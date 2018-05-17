@@ -1,798 +1,888 @@
 [
   {
     "tax": "baseline",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 1192.425
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 1293.215
   },
   {
     "tax": "baseline",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 520.8
   },
   {
     "tax": "baseline",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 35.585
   },
   {
     "tax": "baseline",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 840.819
   },
   {
     "tax": "baseline",
-    "fuel": "other",
+    "category": "other",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 329.342
   },
   {
     "tax": "baseline",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 1424.6
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 723.5
   },
   {
     "tax": "baseline",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 687.8
   },
   {
     "tax": "baseline",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 63.2
   },
   {
     "tax": "baseline",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 869.2
   },
   {
     "tax": "baseline",
-    "fuel": "other",
+    "category": "other",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 343.3
   },
   {
     "tax": "baseline",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 1224.7
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 1366.6
   },
   {
     "tax": "baseline",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 551.1
   },
   {
     "tax": "baseline",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 33.2
   },
   {
     "tax": "baseline",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 836.2
   },
   {
     "tax": "baseline",
-    "fuel": "other",
+    "category": "other",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 330.8
   },
   {
     "tax": "twenty-five",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 111.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 1396.6
   },
   {
     "tax": "twenty-five",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 1183.5
   },
   {
     "tax": "twenty-five",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 275.9
   },
   {
     "tax": "twenty-five",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 872.6
   },
   {
     "tax": "twenty-five",
-    "fuel": "other",
+    "category": "other",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 321.3
   },
   {
     "tax": "twenty-five",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 166
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 963.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 1273.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 481.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 877.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "other",
+    "category": "other",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 321.8
   },
   {
     "tax": "twenty-five",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 112.8
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 1476.7
   },
   {
     "tax": "twenty-five",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 1193.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 317.3
   },
   {
     "tax": "twenty-five",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 873
   },
   {
     "tax": "twenty-five",
-    "fuel": "other",
+    "category": "other",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 321.2
   },
   {
     "tax": "fifty",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 44.7
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 1024.2
   },
   {
     "tax": "fifty",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 1304.7
   },
   {
     "tax": "fifty",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 537.9
   },
   {
     "tax": "fifty",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 885.2
   },
   {
     "tax": "fifty",
-    "fuel": "other",
+    "category": "other",
     "aeo": "New",
     "scenario": "Standard Scenario",
     "value": 320
   },
   {
     "tax": "fifty",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 47.5
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 709.3
   },
   {
     "tax": "fifty",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 1366.6
   },
   {
     "tax": "fifty",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 665
   },
   {
     "tax": "fifty",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 898.6
   },
   {
     "tax": "fifty",
-    "fuel": "other",
+    "category": "other",
     "aeo": "New",
     "scenario": "High Gas Prices",
     "value": 356.8
   },
   {
     "tax": "fifty",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 44.7
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 1078.8
   },
   {
     "tax": "fifty",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 1323.8
   },
   {
     "tax": "fifty",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 586.1
   },
   {
     "tax": "fifty",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 896.7
   },
   {
     "tax": "fifty",
-    "fuel": "other",
+    "category": "other",
     "aeo": "New",
     "scenario": "High Demand",
     "value": 324.2
   },
   {
     "tax": "baseline",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 2059.6
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 891.1
   },
   {
     "tax": "baseline",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 246
   },
   {
     "tax": "baseline",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 8.4
   },
   {
     "tax": "baseline",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 864.9
   },
   {
     "tax": "baseline",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 352.5
   },
   {
     "tax": "baseline",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 2214.8
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 550.4
   },
   {
     "tax": "baseline",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 265.8
   },
   {
     "tax": "baseline",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 8.4
   },
   {
     "tax": "baseline",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 864.9
   },
   {
     "tax": "baseline",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 429.8
   },
   {
     "tax": "baseline",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 2132.2
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 1159.1
   },
   {
     "tax": "baseline",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 280.2
   },
   {
     "tax": "baseline",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 8.4
   },
   {
     "tax": "baseline",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 864.9
   },
   {
     "tax": "baseline",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 364.6
   },
   {
     "tax": "baseline",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 2313.7
   },
   {
     "tax": "baseline",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 763.5
   },
   {
     "tax": "baseline",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 327.5
   },
   {
     "tax": "baseline",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 8.4
   },
   {
     "tax": "baseline",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 866.2
   },
   {
     "tax": "baseline",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 442.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 1159.6
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 1271.7
   },
   {
     "tax": "twenty-five",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 260.9
   },
   {
     "tax": "twenty-five",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 7.6
   },
   {
     "tax": "twenty-five",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 905.4
   },
   {
     "tax": "twenty-five",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 344.9
   },
   {
     "tax": "twenty-five",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 1543.9
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 707.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 272
   },
   {
     "tax": "twenty-five",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 8.1
   },
   {
     "tax": "twenty-five",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 984.6
   },
   {
     "tax": "twenty-five",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "High Gas Prices",
     "value": 372
   },
   {
     "tax": "twenty-five",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 1204.4
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 1522.6
   },
   {
     "tax": "twenty-five",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 298.8
   },
   {
     "tax": "twenty-five",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 8.4
   },
   {
     "tax": "twenty-five",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 953.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "High Demand",
     "value": 348.7
   },
   {
     "tax": "twenty-five",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 1588.1
   },
   {
     "tax": "twenty-five",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 937.4
   },
   {
     "tax": "twenty-five",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 310.5
   },
   {
     "tax": "twenty-five",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 8.4
   },
   {
     "tax": "twenty-five",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 1028.2
   },
   {
     "tax": "twenty-five",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 372.4
   },
   {
     "tax": "fifty",
-    "fuel": "coal",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 193.4
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 1652.4
   },
   {
     "tax": "fifty",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 426.8
   },
   {
     "tax": "fifty",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 6
   },
   {
     "tax": "fifty",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 1094
   },
   {
     "tax": "fifty",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "Standard Scenario",
     "value": 327.4
   },
+// new
   {
     "tax": "fifty",
-    "fuel": "coal",
+    "category": "coal",
+    "aeo": "Old",
+    "scenario": "High Gas Prices",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "natural gas",
+    "aeo": "Old",
+    "scenario": "High Gas Prices",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "wind",
+    "aeo": "Old",
+    "scenario": "High Gas Prices",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "solar",
+    "aeo": "Old",
+    "scenario": "High Gas Prices",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "nuclear",
+    "aeo": "Old",
+    "scenario": "High Gas Prices",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "other",
+    "aeo": "Old",
+    "scenario": "High Gas Prices",
+    "value": null
+  },
+// end new
+
+// new
+  {
+    "tax": "fifty",
+    "category": "coal",
+    "aeo": "Old",
+    "scenario": "High Demand",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "natural gas",
+    "aeo": "Old",
+    "scenario": "High Demand",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "wind",
+    "aeo": "Old",
+    "scenario": "High Demand",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "solar",
+    "aeo": "Old",
+    "scenario": "High Demand",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "nuclear",
+    "aeo": "Old",
+    "scenario": "High Demand",
+    "value": null
+  },
+  {
+    "tax": "fifty",
+    "category": "other",
+    "aeo": "Old",
+    "scenario": "High Demand",
+    "value": null
+  },
+  // end new
+
+  {
+    "tax": "fifty",
+    "category": "coal",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 597.7
   },
   {
     "tax": "fifty",
-    "fuel": "natural gas",
+    "category": "natural gas",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 1195.7
   },
   {
     "tax": "fifty",
-    "fuel": "wind",
+    "category": "wind",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 666.4
   },
   {
     "tax": "fifty",
-    "fuel": "solar",
+    "category": "solar",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 8.4
   },
   {
     "tax": "fifty",
-    "fuel": "nuclear",
+    "category": "nuclear",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 1161.7
   },
   {
     "tax": "fifty",
-    "fuel": "other",
+    "category": "other",
     "aeo": "Old",
     "scenario": "High Demand and Gas Prices",
     "value": 342.2

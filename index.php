@@ -5,5 +5,8 @@
     <h4>New Estimates Predict Much Less Coal-Fired Electricity, More from Renewables</h4>
     <div id="chart-0" class="chart-container"></div>
 </figure>
-<div id="chart-1" class="chart-container"></div>
+<figure>
+    <h4>Figure Title for the Other One</h4>
+    <div id="chart-1" class="chart-container"></div>
+</figure>
 <script src="http://0.0.0.0:8000/js/scripts.js"></script>

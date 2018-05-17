@@ -1,0 +1,77 @@
+aeo,tax,scenario,category,value
+2016,baseline,reference,net emissions,1864.1
+2016,baseline,reference,demand reduction,0
+2016,baseline,reference,generation mix shift,0
+2016,baseline,reference,emissions intensity reduction,0
+2016,baseline,gas,net emissions,1894.7
+2016,baseline,gas,demand reduction,0
+2016,baseline,gas,generation mix shift,0
+2016,baseline,gas,emissions intensity reduction,0
+2016,baseline,demand,net emissions,1917.2
+2016,baseline,demand,demand reduction,0
+2016,baseline,demand,generation mix shift,0
+2016,baseline,demand,emissions intensity reduction,0
+2016,twenty-five,reference,net emissions,702.5
+2016,twenty-five,reference,demand reduction,13
+2016,twenty-five,reference,generation mix shift,1086.7
+2016,twenty-five,reference,emissions intensity reduction,61.9
+2016,twenty-five,gas,net emissions,596.6
+2016,twenty-five,gas,demand reduction,7.1
+2016,twenty-five,gas,generation mix shift,1223.1
+2016,twenty-five,gas,emissions intensity reduction,68
+2016,twenty-five,demand,net emissions,732.2
+2016,twenty-five,demand,demand reduction,12.3
+2016,twenty-five,demand,generation mix shift,1118.3
+2016,twenty-five,demand,emissions intensity reduction,54.4
+2016,fifty,reference,net emissions,414.7
+2016,fifty,reference,demand reduction,19
+2016,fifty,reference,generation mix shift,1271.3
+2016,fifty,reference,emissions intensity reduction,159.1
+2016,fifty,gas,net emissions,338.9
+2016,fifty,gas,demand reduction,12.4
+2016,fifty,gas,generation mix shift,1419.6
+2016,fifty,gas,emissions intensity reduction,123.8
+2016,fifty,demand,net emissions,430.4
+2016,fifty,demand,demand reduction,17.6
+2016,fifty,demand,generation mix shift,1312.3
+2016,fifty,demand,emissions intensity reduction,157
+2011,baseline,reference,net emissions,2564.2
+2011,baseline,reference,demand reduction,0
+2011,baseline,reference,generation mix shift,0
+2011,baseline,reference,emissions intensity reduction,0
+2011,baseline,gas,net emissions,2651.9
+2011,baseline,gas,demand reduction,0
+2011,baseline,gas,generation mix shift,0
+2011,baseline,gas,emissions intensity reduction,0
+2011,baseline,demand,net emissions,2747.7
+2011,baseline,demand,demand reduction,0
+2011,baseline,demand,generation mix shift,0
+2011,baseline,demand,emissions intensity reduction,0
+2011,baseline,both,net emissions,2847.3
+2011,baseline,both,demand reduction,0
+2011,baseline,both,generation mix shift,0
+2011,baseline,both,emissions intensity reduction,0
+2011,twenty-five,reference,net emissions,1703
+2011,twenty-five,reference,demand reduction,234.5
+2011,twenty-five,reference,generation mix shift,519.2
+2011,twenty-five,reference,emissions intensity reduction,107.6
+2011,twenty-five,gas,net emissions,1881.4
+2011,twenty-five,gas,demand reduction,243
+2011,twenty-five,gas,generation mix shift,385.1
+2011,twenty-five,gas,emissions intensity reduction,142.4
+2011,twenty-five,demand,net emissions,1833.9
+2011,twenty-five,demand,demand reduction,231.4
+2011,twenty-five,demand,generation mix shift,564.6
+2011,twenty-five,demand,emissions intensity reduction,117.8
+2011,twenty-five,both,net emissions,2009
+2011,twenty-five,both,demand reduction,254.7
+2011,twenty-five,both,generation mix shift,428.9
+2011,twenty-five,both,emissions intensity reduction,154.6
+2011,fifty,reference,net emissions,856.3
+2011,fifty,reference,demand reduction,235.3
+2011,fifty,reference,generation mix shift,1300.8
+2011,fifty,reference,emissions intensity reduction,171.8
+2011,fifty,both,net emissions,1025.4
+2011,fifty,both,demand reduction,291.6
+2011,fifty,both,generation mix shift,1209.4
+2011,fifty,both,emissions intensity reduction,320.8
