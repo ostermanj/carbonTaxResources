@@ -58,7 +58,10 @@ module.exports = function(grunt){
         uglify: {
             options: {
               mangle: {
-                except: []
+                reserved: ['d3','Highcharts']
+              },
+              compress: {
+                drop_console: true
               }
             },
             min: {
@@ -86,8 +89,8 @@ module.exports = function(grunt){
                 files: [{
                   expand: true,
                   cwd: 'css',
-                  src: ['css/prefixed/*.css', '!*.min.css'],
-                  dest: 'css/min',
+                  src: ['*.css', '!*.min.css'],
+                  dest: 'css',
                   ext: '.min.css'
                 }]
             }
