@@ -1,5 +1,7 @@
 const dataSource = require('../data/decomposition.json');
-console.log(dataSource);
+import { dataController } from './highchart-app.js';
+import { sharedMethods } from './shared-methods.js';
+console.log(sharedMethods);
 export default { 
     chart: { 
         type: 'column',   
@@ -55,5 +57,11 @@ export default {
             x: -10
         },
         max:3000, // TO DO: set programmatically
-    }    
-}
+    },
+    // extends Highcharts options
+    dataSource: dataController.nestData(dataSource, ['category','aeo','scenario']),
+    initialCategory: 'twenty-five',
+    seriesCreator: sharedMethods.createBarSeries,
+    updateFunction: sharedMethods.updateChart,
+    userOptions: sharedMethods.userOptions
+};

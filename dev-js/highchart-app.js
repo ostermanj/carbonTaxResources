@@ -1,8 +1,8 @@
 const d3 = require('d3-collection'); // requiring subset of D3 to handle the data nesting
 import { HighchartsDefaults } from './highcharts-defaults.js';
-import { CreateDropdown } from './dropdown.js';
-console.log(CreateDropdown);
-export default (function(){
+import { createDropdown } from './dropdown.js';
+
+var fullAPI = (function(){
     /* global Highcharts */
     "use strict";
 
@@ -51,10 +51,10 @@ export default (function(){
     
     var chartController = {
         isInitialized: false,
-        setTimers(){
+        init(chartConfigs){
             var initTimer = setTimeout(() => {
                 console.log('timer');
-                this.initCharts();
+                this.initCharts(chartConfigs);
             },5000);
             if ( document.fonts !== undefined ){ // highcharts lays out the charts according to font characteristics, how much space
                                                  // a line or paragraph or label takes up, for instance. If it loads before the fonts are
@@ -65,31 +65,32 @@ export default (function(){
                 document.fonts.ready.then(() => {
                     clearTimeout(initTimer);
                     if ( !this.isInitialized ){
-                        this.initCharts();
+                        this.initCharts(chartConfigs);
                     }
                 });
             } else {
                 window.addEventListener('load', function(){
                     clearTimeout(initTimer);
                     if ( !this.isInitialized ){ 
-                        this.initCharts();
+                        this.initCharts(chartConfigs);
                     }
                 });
             }
         },
-        initCharts(){
+        initCharts(chartConfigs){
             /* set default options */
             Highcharts.setOptions(HighchartsDefaults);
             this.charts = []; 
-            chartOptions.forEach((options,i) => {
-                options.series = options.seriesCreator(i);
-                this.charts.push(new Highcharts.chart('chart-' + i, options));
-                this.checkSubtitle(i);
-               // CreateDropdown(i);
-               // updateChart(i, chart.initialCategory); 
+            chartConfigs.forEach((options,i) => {
+                options.series = options.seriesCreator(options.dataSource);
+                options.Highchart = new Highcharts.chart('chart-' + i, options);
+                this.charts.push(options.Highchart);
+               // this.checkSubtitle(i);
+                createDropdown(options);
+                options.updateFunction(options.initialCategory); 
             });
         },
-        checkSubtitle(index){
+     /*   checkSubtitle(index){
         var chart = this.charts[index];
             if ( chart.options.subtitle.verticalAlign === 'bottom' ){
                 var svg = chart.container.querySelector('.highcharts-root');
@@ -99,7 +100,7 @@ export default (function(){
                 svg.setAttribute('height', viewBoxArray[3]);
                 svg.setAttribute('viewBox', viewBoxArray.join(' '));
             }
-        }
+        }*/
     };
     
     return {
@@ -108,3 +109,6 @@ export default (function(){
     };
     
 }()); // end IIFE 
+
+export default fullAPI;
+export const dataController = fullAPI.dataController;

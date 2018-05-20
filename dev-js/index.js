@@ -1,5 +1,5 @@
 import HighchartApp from './highchart-app.js';
-import generationOptions from './generation-config.js'; 
-import decompositionOptions from './decomposition-config.js'; 
-//const chartOptions = [require('./generation-options.json'), require('./decomposition-options.json')];
-console.log(HighchartApp, generationOptions, decompositionOptions);   
+var chartConfigs = [require('./generation-config.js').default, require('./decomposition-config.js').default];
+console.log(HighchartApp, chartConfigs);
+
+HighchartApp.chartController.init(chartConfigs);

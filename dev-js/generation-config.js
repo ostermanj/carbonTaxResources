@@ -1,5 +1,7 @@
 const dataSource = require('../data/generation.json');
-console.log(dataSource);
+import { dataController } from './highchart-app.js';
+import { sharedMethods } from './shared-methods.js';
+
 export default { 
     chart: {  
         height: 600,
@@ -55,5 +57,11 @@ export default {
             offset: -75,
             x: -10
         } 
-    }
+    },
+    /* extends highcharts */
+    dataSource: dataController.nestData(dataSource, ['category','aeo','scenario']),
+    initialCategory: 'baseline',
+    seriesCreator: sharedMethods.createBarSeries,
+    updateFunction: sharedMethods.updateChart,
+    userOptions: sharedMethods.userOptions
 };

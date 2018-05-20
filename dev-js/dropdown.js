@@ -1,16 +1,16 @@
-export const CreateDropdown = function(index){
+export const createDropdown = function(options){
     var dropdown = document.createElement('select');
-    dropdown.setAttribute('id','hc-dropdown-' + index);
-    window.scenarioDict.forEach((s,i) => {
+    options.userOptions.options.forEach((s,i) => {
         var option = document.createElement('option');
         option.setAttribute('value', s.key);
         option.innerHTML = s.value;
         dropdown.appendChild(option);
     });
-    document.getElementById('chart-' + index).insertAdjacentHTML('beforebegin', dropdown.outerHTML);
-    var rendered = document.getElementById('hc-dropdown-' + index);
-    rendered.value = window.optionsCollection[index].initialCategory;
-    rendered.onchange = function(e){
-        updateChart(index, this.value);
-    }
+    options.Highchart.renderTo.insertAdjacentHTML('afterbegin', dropdown.outerHTML);
+    console.log(options.Highchart.renderTo);
+    var rendered = options.Highchart.renderTo.querySelector('select');
+    rendered.value = options.initialCategory;
+    rendered.onchange = function(){
+        options.updateFunction.call(options,rendered.value);
+    };
 };
