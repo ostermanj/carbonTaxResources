@@ -9,4 +9,4 @@
     <h4>New Estimates Show Lower Overall Emissions and Greater Reductions from Shift to Renewables by 2030</h4>
     <div id="chart-1" class="chart-container"></div>
 </figure>
-<script src="http://0.0.0.0:8000/js/scripts.js"></script>
+<script src="http://0.0.0.0:8000/js/index.js"></script>

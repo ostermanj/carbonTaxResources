@@ -1,20 +1,12 @@
-/* global Highcharts */
 const d3 = require('d3-collection'); // requiring subset of D3 to handle the data nesting
-const generationData = require('../data/generation.json');
-const decompositionData = require('../data/decomposition.json');
-const chart0Options = require('./generation-options.json');
-const chart1Options = require('./decomposition-options.json');
-
-import { CreateDropdown } from './dropdown.js';
 import { HighchartsDefaults } from './highcharts-defaults.js';
-
-(function(){
+import { CreateDropdown } from './dropdown.js';
+console.log(CreateDropdown);
+export default (function(){
+    /* global Highcharts */
     "use strict";
 
-/*
- * Set up data and options
- *
- */ var dataController = {
+    var dataController = {
         nestData(data, nestBy, nestType = 'series'){
         // nestBy = string or array of field(s) to nest by, or a custom function, or an array of strings or functions;
             var prelim,
@@ -57,13 +49,7 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
         }
     }; // end dataController
     
-    window.scenarioDict = [ // TO DO: where to place this???
-        {key: 'baseline', value: 'No carbon tax'},
-        {key: 'twenty-five', value: '$25/ton tax'},
-        {key: 'fifty', value: '$50/ton tax'} 
-    ];
-    
-    var viewController = {
+    var chartController = {
         isInitialized: false,
         setTimers(){
             var initTimer = setTimeout(() => {
@@ -95,86 +81,30 @@ import { HighchartsDefaults } from './highcharts-defaults.js';
             /* set default options */
             Highcharts.setOptions(HighchartsDefaults);
             this.charts = []; 
-            this.optionsCollection.forEach((oc,i) => {
-                oc.series = oc.seriesCreator(i);
-                this.charts.push(new Highcharts.chart('chart-' + i, oc));
-                checkSubtitle(i);
-                CreateDropdown(i);
-                updateChart(i, oc.initialCategory); 
+            chartOptions.forEach((options,i) => {
+                options.series = options.seriesCreator(i);
+                this.charts.push(new Highcharts.chart('chart-' + i, options));
+                this.checkSubtitle(i);
+               // CreateDropdown(i);
+               // updateChart(i, chart.initialCategory); 
             });
+        },
+        checkSubtitle(index){
+        var chart = this.charts[index];
+            if ( chart.options.subtitle.verticalAlign === 'bottom' ){
+                var svg = chart.container.querySelector('.highcharts-root');
+                console.log(svg);
+                var viewBoxArray = svg.getAttribute('viewBox').split(' ');
+                viewBoxArray[3] = svg.getBBox().height;
+                svg.setAttribute('height', viewBoxArray[3]);
+                svg.setAttribute('viewBox', viewBoxArray.join(' '));
+            }
         }
     };
-      
-    /* set options for the specific charts */ 
-    window.optionsCollection = [chart0Options,chart1Options];
-     
-/*
- * Set up triggers to initialize charts
- *
- */  
-
-    var isInitialized = false;
     
-    
-    function initCharts(){
-        
-    }
-
-    function checkSubtitle(index){
-        var chart = window.charts[index];
-        if ( chart.options.subtitle.verticalAlign === 'bottom' ){
-            var svg = chart.container.querySelector('.highcharts-root');
-            console.log(svg);
-            var viewBoxArray = svg.getAttribute('viewBox').split(' ');
-            viewBoxArray[3] = svg.getBBox().height;
-            svg.setAttribute('height', viewBoxArray[3]);
-            svg.setAttribute('viewBox', viewBoxArray.join(' '));
-        }
-    }
-
-    function setData(aeo, taxLevel, isInitial){
-        return aeo.values.map(s => { 
-            console.log(s.key);
-            var match = s.values.find(v => v.tax === taxLevel);
-            console.log(match);
-            if ( match !== undefined) {
-                return isInitial ? [s.key, 0] : [s.key, match.value];
-            }
-        });
-    } 
-    function createBarSeries(index){ // jshint ignore:line
-
-        var array = [];
-        dataCollection[index].forEach((c,i) => {
-            c.values.reverse().forEach((aeo, j) => {
-                array.push({
-                    name: c.key, 
-                    data: setData(aeo, 'baseline', true),
-                    stack: aeo.key,
-                    linkedTo: j === 0 ? undefined : ':previous',
-                    colorIndex: i
-                });
-            });
-        }); 
-        return array;
-    }
-    function updateChart(index, taxLevel){ // NEED TO APPLY TO SPECIFIC INDEX OF WINDOW.CHARTS
-        console.log(index, taxLevel, dataCollection[index]);
-        /* jshint validthis: true */
-        let seriesIndex = 0;
-        dataCollection[index].forEach(c => {
-            c.values.forEach(aeo => {
-                console.log(index, seriesIndex);
-                window.charts[index].series[seriesIndex].setData(setData(aeo, taxLevel, false));
-                seriesIndex++;
-            });
-            var titleText = window. optionsCollection[index].title.formatter(window.scenarioDict.find(s => s.key === taxLevel).value.toLowerCase());
-            window.charts[index].setTitle({text: titleText});
-        });
-     //   window.charts[index].setTitle({text: `Electricity generation in 2030 by source, with ${ window.scenarioDict.find(s => s.key === taxLevel).value }`}); // HOW TO HANDLE THIS?
-    }
-    
-    window.updateChart = updateChart;
-
+    return {
+        dataController,
+        chartController
+    };
     
 }()); // end IIFE 

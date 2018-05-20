@@ -1,4 +1,6 @@
-{ 
+const dataSource = require('../data/decomposition.json');
+console.log(dataSource);
+export default { 
     chart: { 
         type: 'column',   
         height: 600
@@ -53,9 +55,5 @@
             x: -10
         },
         max:3000, // TO DO: set programmatically
-    },
-    // extends Highcharts options
-    data: window.nestData(decompositionData, ['category','aeo','scenario']),
-    initialCategory: 'twenty-five',
-    seriesCreator: createBarSeries
+    }    
 }

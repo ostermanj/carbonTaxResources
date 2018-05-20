@@ -1,4 +1,6 @@
-{ 
+const dataSource = require('../data/generation.json');
+console.log(dataSource);
+export default { 
     chart: {  
         height: 600,
         type: 'column'  
@@ -53,10 +55,5 @@
             offset: -75,
             x: -10
         } 
-    },
-    /* extends Highcharts */
-    data: window.nestData(generationData, ['category','aeo','scenario']),
-    initialCategory: 'baseline',
-    seriesCreator: createBarSeries
-
-}
+    }
+};
