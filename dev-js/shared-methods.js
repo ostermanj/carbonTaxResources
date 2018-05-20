@@ -38,7 +38,7 @@ export const sharedMethods = { // as an exported module `this` depends on contex
         });
     },
     userOptions: {
-        type: 'dropdown',
+        type: 'radio',
         options: [
             {key: 'baseline', value: 'No carbon tax'},
             {key: 'twenty-five', value: '$25/ton tax'},

@@ -1,4 +1,4 @@
-export const createDropdown = function(options){
+export default function(options){
     var dropdown = document.createElement('select');
     options.userOptions.options.forEach((s,i) => {
         var option = document.createElement('option');

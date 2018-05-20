@@ -1,6 +1,6 @@
 const d3 = require('d3-collection'); // requiring subset of D3 to handle the data nesting
-import { HighchartsDefaults } from './highcharts-defaults.js';
-import { createDropdown } from './dropdown.js';
+import { HighchartsDefaults } from '../chart-configs/highcharts-defaults.js';
+import createUserOptions from '../components/user-options.js';
 
 var fullAPI = (function(){
     /* global Highcharts */
@@ -85,22 +85,10 @@ var fullAPI = (function(){
                 options.series = options.seriesCreator(options.dataSource);
                 options.Highchart = new Highcharts.chart('chart-' + i, options);
                 this.charts.push(options.Highchart);
-               // this.checkSubtitle(i);
-                createDropdown(options);
+                createUserOptions(options);
                 options.updateFunction(options.initialCategory); 
             });
         },
-     /*   checkSubtitle(index){
-        var chart = this.charts[index];
-            if ( chart.options.subtitle.verticalAlign === 'bottom' ){
-                var svg = chart.container.querySelector('.highcharts-root');
-                console.log(svg);
-                var viewBoxArray = svg.getAttribute('viewBox').split(' ');
-                viewBoxArray[3] = svg.getBBox().height;
-                svg.setAttribute('height', viewBoxArray[3]);
-                svg.setAttribute('viewBox', viewBoxArray.join(' '));
-            }
-        }*/
     };
     
     return {
