@@ -1,9 +1,24 @@
-
-
 .highcharts-xaxis-labels > span {
     text-align: center;
 }
 
+.chart-container form label {
+  display: initial;
+  font-family: inherit;
+  margin-right:1em;
+
+  input[type="checkbox"], input[type="radio"] {
+    float:none;
+    top: -1px;
+    margin-right:0.25em;
+  }
+}
+
+.highcharts-note {
+  color: #58585b;
+  font-size:0.8em;
+  line-height:140%;
+}
 /*
  * overrides to highcharts css
  */
@@ -16,6 +31,7 @@
     font-family: inherit;
     font-size: 0.85em;
     line-height: inherit;
+    height: initial;
     //background: transparent url('//www.rff.org/files/rff-logo-small.png') no-repeat 45px bottom;
     //background-image-size: 50%;
  }
