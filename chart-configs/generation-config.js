@@ -40,11 +40,11 @@ export default {
             crop: false,
             enabled: true,
             formatter: function() {
-                return this.stack; 
+                return this.total !== 0 ? this.stack : 'n.a.'; 
             },
             overflow: 'none',
             verticalAlign: 'bottom',
-            y: 20 
+            y: 20
         },
         title: {
             text: 'terawatt hours',

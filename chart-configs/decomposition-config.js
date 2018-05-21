@@ -40,9 +40,9 @@ export default {
               crop: false,
               overflow: 'none',
               y: 20, 
-              formatter: function() {
-                return this.stack;
-              }
+               formatter: function() {
+                return this.total !== 0 ? this.stack : 'n.a.'; 
+            },
         },
         title: {
             text: 'megatons',

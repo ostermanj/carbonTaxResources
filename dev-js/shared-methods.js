@@ -1,13 +1,14 @@
 export const sharedMethods = { // as an exported module `this` depends on context in which method is called
     setData(aeo, taxLevel, isInitial){
-        return aeo.values.map(s => { 
-            console.log(s.key);
+        var rtn = aeo.values.map(s => { 
             var match = s.values.find(v => v.tax === taxLevel);
             console.log(match);
-            if ( match !== undefined) {
-                return isInitial ? [s.key, 0] : [s.key, match.value];
+            if ( match !== undefined ) {
+                return ( isInitial || match.value === null ) ? [s.key, 0] : [s.key, match.value];
             }
         });
+        console.log(rtn);
+        return rtn;
     },
     createBarSeries(data){ 
         
@@ -26,7 +27,6 @@ export const sharedMethods = { // as an exported module `this` depends on contex
         return array;
     },
     updateChart(taxLevel){ 
-        console.log(this); 
         var seriesIndex = 0;
         this.dataSource.forEach(c => {
             c.values.forEach(aeo => {
