@@ -86,7 +86,7 @@ var fullAPI = (function(){
                 options.Highchart = new Highcharts.chart('chart-' + i, options);
                 this.charts.push(options.Highchart);
                 createUserOptions(options);
-                options.updateFunction(options.initialCategory); 
+                options.updateFunction(...options.initialUpdateParams); 
             });
         },
     };

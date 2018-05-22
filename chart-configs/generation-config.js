@@ -59,6 +59,7 @@ export default {
     /* extends highcharts */
     dataSource: dataController.nestData(dataSource, ['category','aeo','scenario']),
     initialCategory: 'baseline',
+    initialUpdateParams: ['baseline'],
     seriesCreator: sharedMethods.createBarSeries,
     updateFunction: sharedMethods.updateChart,
     userOptions: sharedMethods.userOptions,
