@@ -1,3 +1,27 @@
+.highcharts-container.predicted-sales {
+  .highcharts-series-0 path.highcharts-graph {
+    stroke-width:3px;
+  }
+}
+
+g.highcharts-annotation {
+  opacity:1;
+  transition: opacity 0.5s linear;
+}
+g.highcharts-annotation[visibility="hidden"]{
+  visibility: visible;
+  opacity: 0;
+}
+
+.highcharts-annotation-label text {
+  fill: #58585b;
+}
+
+.highcharts-annotation-label-box {
+  stroke:none;
+  fill:none;
+}
+
 .highcharts-xaxis-labels > span {
     text-align: center;
 }

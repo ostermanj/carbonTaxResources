@@ -1,4 +1,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/js/highcharts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/js/modules/annotations.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/css/highcharts.css" />
 <link rel="stylesheet" type="text/css" href="http://0.0.0.0:8000/dev-css/styles.css" />
 <figure>
@@ -10,7 +11,7 @@
     <div id="chart-1" class="chart-container"></div>
 </figure>
 <figure>
-    <h4>Line chart</h4>
+    <h4>Actual Electricity Sales Have Been Lower Than Estimated</h4>
     <div id="chart-2" class="chart-container"></div>
 </figure>
 <script src="http://0.0.0.0:8000/js/index.js"></script>

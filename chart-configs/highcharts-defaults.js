@@ -11,7 +11,6 @@ function addNote(){
 }
 function adjustContainerSize(){
     if (this.userOptions.note && this.userOptions.note !== ''){
-        console.log(this.container.style);
         this.container.style.paddingBottom = ( this.noteSpan.offsetHeight + 10 ) + 'px'; 
     }
 }

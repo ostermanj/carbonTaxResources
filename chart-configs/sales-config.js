@@ -3,14 +3,44 @@ import { dataController } from '../dev-js/highchart-app.js';
 import { sharedLineMethods } from '../dev-js/shared-line-methods.js';
 //console.log(sharedMethods);
 export default { 
+     /*annotations: [{
+        labelOptions: {
+            allowOverlap: true,
+            //backgroundColor: 'rgba(255,255,255,0.5)',
+            verticalAlign: 'bottom',
+            y: -15
+        },
+        labels: [{
+            point: {
+                xAxis: 0,
+                yAxis: 0,
+                x: 2000,
+                y: 3592
+            },
+            text: `Hello!`
+        }]    
+    }],*/
     chart: { 
+        animation: {
+            duration: 550,
+            easing: 'linear'
+        },
         type: 'line',   
-        height: 500
+        height: 500,
     },
     plotOptions: {
         series: {
+            allowPointSelect:true,
+            connectNulls: true,
+            //enableMouseTracking: false, // will be set to true after animation is finished
             marker: {
-                enabled: false
+                radius:0.01,
+                states: {
+                    select: {
+                        radius:4
+                    }
+                },
+                symbol: 'circle'
             },
             pointStart: 2000
         }
@@ -19,18 +49,18 @@ export default {
         text: 'Subtitle.'
     },           
     title: {
-        text: 'Title title title'
+        text: 'Title title title',
     },
     tooltip: {
         valueDecimals: 2,
         valueSuffix: ' billion kWh'
     },
     xAxis: {
-        min: 2000,
-        max: 2035
+        min: 2001,
+        max: 2018
     },
     yAxis: {
-        max: 5000,
+        max: 4000,
         min: 3500,
         title: {
             text: 'billion kilowatt hours',
