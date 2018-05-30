@@ -14,6 +14,18 @@ function adjustContainerSize(){
         this.container.style.paddingBottom = ( this.noteSpan.offsetHeight + 10 ) + 'px'; 
     }
 }
+function adjustYAxesTitlePositions(){
+    this.yAxis.forEach(axis => {
+        if ( axis.options.title.align === 'high' ){
+            axis.axisGroup.element.className.baseVal = axis.axisGroup.element.className.baseVal + ' title-high';
+        }
+    });
+}
+function onLoadFunction(){
+    addNote.call(this);
+    adjustYAxesTitlePositions.call(this);
+}
+
 export const HighchartsDefaults = {
     lang: {
           thousandsSep: ','
@@ -21,7 +33,7 @@ export const HighchartsDefaults = {
     chart: {
         backgroundColor: 'none',
         events: {
-          load: addNote,
+          load: onLoadFunction,
           redraw: adjustContainerSize
         }
     },
@@ -46,5 +58,10 @@ export const HighchartsDefaults = {
     legend: {
         padding:13
 
+    },
+    yAxis: {
+        labels: {
+            format: '{value:,.0f}'
+        }
     }
 };

@@ -11,7 +11,7 @@
     <div id="chart-1" class="chart-container"></div>
 </figure>
 <figure>
-    <h4>Actual Electricity Sales Have Been Lower Than Estimated</h4>
+    <h4>Estimates of Future Electricity Demand Decline as Actual Sales Fall Short of Expectations</h4>
     <div id="chart-2" class="chart-container"></div>
 </figure>
 <script src="http://0.0.0.0:8000/js/index.js"></script>

@@ -32,7 +32,7 @@ export default {
         series: {
             allowPointSelect:true,
             connectNulls: true,
-            //enableMouseTracking: false, // will be set to true after animation is finished
+            enableMouseTracking: false, // will be set to true after animation is finished
             marker: {
                 radius:0.01,
                 states: {
@@ -46,14 +46,14 @@ export default {
         }
     },
     subtitle: {
-        text: 'Subtitle.'
+        text: 'Estimates have flattened over the years as actual demand has fallen short of expectations.'
     },           
     title: {
-        text: 'Title title title',
+        text: 'U.S. electricity demand, actual and estimated',
     },
     tooltip: {
         valueDecimals: 2,
-        valueSuffix: ' billion kWh'
+        valueSuffix: ' TWh'
     },
     xAxis: {
         min: 2001,
@@ -63,12 +63,13 @@ export default {
         max: 4000,
         min: 3500,
         title: {
-            text: 'billion kilowatt hours',
+            text: 'terawatt hours',
             align:'high',
             rotation: 0,
             margin:0,
             y: -25,
-            offset: -110,
+            reserveSpace: false,
+          //  offset: -110,
             x: -10
         }
     },
@@ -77,5 +78,5 @@ export default {
     seriesCreator: sharedLineMethods.createSeries,
     updateFunction: sharedLineMethods.updateChart,
     initialUpdateParams: [],
-    note: 'this is the note',
+    note: '1 terawatt hour = 1 billion kilowatt hours. Sources: U.S. Energy Information Administration (EIA), Annual Energy Outlook (2009, 2011, and 2016); EIA Monthly Energy Revoew, April 2018.',
 };

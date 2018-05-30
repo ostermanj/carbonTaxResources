@@ -11,7 +11,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         return rtn;
     },*/
     createSeries(data){ 
-        var array = data.map((series) => {
+        var array = data.map((series, i) => {
             console.log(series);
             var data = [];
             for ( var year = 2000; year < 2036; year++ ){
@@ -23,7 +23,8 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             }
             return {
                 name: series.series,
-                data: data
+                data: data,
+                className: i === 0 ? 'solid' : 'shortdot'
             }
         });
         
@@ -118,13 +119,14 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
                                                                                 toggleLastPoint.call(this,1);
                                                                                 toggleLastPoint.call(this,2);
                                                                                 toggleLastPoint.call(this,3);
-                                                                                annotateYear.call(this, 0, 2017, `The Annual Energy Outlook estimates have flattened over the years<br />in response to lower-than-expected sales.`, 'top-left');
+                                                                                annotateYear.call(this, 0, 2017, 'The Annual Energy Outlook estimates have<br />flattened over the years in response to<br />lower-than-expected sales. That has<br />consequences for estimates of future<br />baseline emissions and the effects of<br />carbon taxes.', 'top-left');
                                                                                 setTimeout(() => {
                                                                                     this.Highchart.annotations[11].setVisible(false); 
                                                                                     togglableElements.forEach(el => {
                                                                                         el.style.opacity = 1;
                                                                                     });
-                                                                                },4000);
+                                                                                    this.Highchart.update({plotOptions: {series: {enableMouseTracking: true}}});
+                                                                                },6000);
                                                                             }, 1000);
                                                                         }, 3000); 
                                                                     });
@@ -184,6 +186,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
                 options.labels[0].point.y = this.Highchart.axes[1].getExtremes().min;
             }
             if ( position === 'top-left' ){
+                options.labels[0].align = 'right';
                 options.labels[0].point.x = this.Highchart.axes[0].getExtremes().min;
                 options.labels[0].point.y = this.Highchart.axes[1].getExtremes().max;
             }

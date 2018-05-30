@@ -50,7 +50,8 @@ export default {
             rotation: 0,
             margin:0,
             y: -25,
-            offset: -40,
+            reserveSpace: false,
+            //offset: 0,
             x: -10
         },
         max:3000, // TO DO: set programmatically

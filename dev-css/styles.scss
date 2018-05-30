@@ -1,3 +1,11 @@
+g.title-high text {
+  text-anchor: start;
+}
+
+g.shortdot path {
+  stroke-dasharray: 5;
+}
+
 .highcharts-container.predicted-sales {
   .highcharts-series-0 path.highcharts-graph {
     stroke-width:3px;

@@ -49,10 +49,11 @@ export default {
         title: {
             text: 'terawatt hours',
             align:'high',
+            reserveSpace: false,
             rotation: 0,
             margin:0,
             y: -25,
-            offset: -75,
+           // offset: -60,
             x: -10
         } 
     },
