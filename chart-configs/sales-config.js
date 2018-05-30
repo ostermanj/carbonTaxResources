@@ -8,7 +8,8 @@ function customUpdate(){ // update function for this chart only
 
     var elementWatcher = scrollmonitor.create(this.Highchart.renderTo);
     elementWatcher.fullyEnterViewport(() => {
-        animate.call(this);
+   //     animate.call(this);
+        elementWatcher.destroy();
     });
 
     this.Highchart.setClassName('predicted-sales');
@@ -27,7 +28,7 @@ function customUpdate(){ // update function for this chart only
         const toggleLastPoint = sharedLineMethods.toggleLastPoint;
 
         var overlay = this.Highchart.renderTo.querySelector('.overlay-play');
-            overlay.onclick = null;
+            overlay.onclick = '';
             overlay.classList.add('clicked');
             setTimeout(() => {
                 overlay.style.display = 'none';
