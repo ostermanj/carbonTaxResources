@@ -1,3 +1,37 @@
+.highcharts-annotation, .highcharts-annotation-labels, .highcharts-annotation-label {
+  width: 100%;
+}
+.highcharts-annotation-label {
+    right: unset !important;
+    left: unset !important;
+    span {
+      background-color: rgba(255,255,255,0.8);
+      border: 1px solid #58585b;
+      padding: 5px 10px;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 410px;
+      white-space: normal !important;
+      vertical-align: top;
+      transform: translate(0,40px);
+      box-sizing: border-box;
+    }
+    &.right {
+      span {
+        left: unset !important;
+        right: 0;
+      }
+    }
+    &.left {
+      span {
+        left: 0 !important;
+      }
+    } 
+    
+}
+
+
+
 .overlay-play {
   position: absolute;
   top:0;
@@ -6,8 +40,9 @@
   left: 0;
   z-index: 99;
   background-color: #e6e7e8;
+  border: 2px solid #e6e7e8;
   cursor: pointer;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear, background-color 0.2s linear;
   opacity: 1;
   border-radius: 10px;
   &.clicked {
@@ -26,13 +61,22 @@
     transform: translate(-50%,-50%);
     transition: border-left-color 0.2s linear;
   }
-  &:hover .triangle-right {
-    border-left: 100px solid #0064af;
+  &:hover {
+    background-color: #fff; 
+    .triangle-right {
+      border-left: 100px solid #0064af;
+    }
   }
 }
 
 
-
+.overlay-replay {
+    padding: 3px;
+    font-size: 0.6em;
+    position: absolute;
+    right: 0;
+    z-index: 99;
+}
 
 g.title-high text {
   text-anchor: start;
@@ -140,51 +184,81 @@ g.highcharts-annotation[visibility="hidden"]{
 /* colors */
 
 .highcharts-color-0 {
+  &.highcharts-annotation-label span {
+    border-color: #002d55
+  }
   fill: #002d55;
   stroke: #002d55;
 }
 
 .highcharts-color-3 {
+  &.highcharts-annotation-label span {
+    border-color: #706f73
+  }
   fill: #706f73;
   stroke: #706f73;
 }
 
 .highcharts-color-1 {
+  &.highcharts-annotation-label span {
+    border-color: #387b2b
+  }
   fill: #387b2b;
   stroke: #387b2b;
 }
 
 .highcharts-color-5 {
+  &.highcharts-annotation-label span {
+    border-color: #572600
+  }
   fill: #572600;
   stroke: #572600;
 }
 
 .highcharts-color-4 {
+  &.highcharts-annotation-label span {
+    border-color: #de791b
+  }
   fill: #de791b;
   stroke: #de791b;
 }
 
 .highcharts-color-2 {
+  &.highcharts-annotation-label span {
+    border-color: #0064af
+  }
   fill: #0064af;
   stroke: #0064af;
 }
 
 .highcharts-color-6 {
+  &.highcharts-annotation-label span {
+    border-color: lighten(#706f73, 20%);
+  }
   fill: lighten(#706f73, 20%);
   stroke: lighten(#706f73, 20%);
 }
 
 .highcharts-color-7 {
+  &.highcharts-annotation-label span {
+    border-color: lighten(#387b2b, 20%);
+  }
   fill: lighten(#387b2b, 20%);
   stroke: lighten(#387b2b, 20%);
 }
 
 .highcharts-color-8 {
+  &.highcharts-annotation-label span {
+    border-color: lighten(#387b2b, 20%);
+  }
   fill: lighten(#387b2b, 20%);
   stroke: lighten(#387b2b, 20%);
 }
 
 .highcharts-color-9 {
+  &.highcharts-annotation-label span {
+    border-color: lighten(#572600, 20%);
+  }
   fill: lighten(#572600, 20%);
   stroke: lighten(#572600, 20%);
 }

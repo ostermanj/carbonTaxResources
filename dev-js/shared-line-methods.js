@@ -41,10 +41,20 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             }]    
         };
         if ( position && Array.isArray(position) ){
+            
             options.labels[0].point.x = position[0];
             options.labels[0].point.y = position[1];
         }
-        if ( position === 'top-right' ){
+        if ( typeof position === 'string' ){
+            options.labels[0].useHTML = true;
+            options.labels[0].className = position + ' highcharts-color-' + series;
+            options.labels[0].point.xAxis = undefined;
+            //options.labels[0].point.yAxis = undefined;
+            options.labels[0].point.x = 0;
+            //options.labels[0].point.y = 0;
+
+        }
+       /* if ( position === 'top-right' ){
             options.labels[0].point.x = this.Highchart.axes[0].getExtremes().max;
             options.labels[0].point.y = this.Highchart.axes[1].getExtremes().max;
         }
@@ -64,7 +74,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         if ( position === 'bottom-middle' ){
             options.labels[0].point.x = ( this.Highchart.axes[0].getExtremes().min + this.Highchart.axes[0].getExtremes().max) / 2;
             options.labels[0].point.y = this.Highchart.axes[1].getExtremes().min;
-        }
+        }*/
        this.Highchart.addAnnotation(options);
        this.Highchart.annotations[this.Highchart.annotations.length - 1].setVisible(true);
     },
@@ -96,7 +106,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
                     },delay);
                     clearInterval(interval);
                 }
-            },500);
+            },500);  // set bac to 500;
         });
     },
     toggleLastPoint(series){
