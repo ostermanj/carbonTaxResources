@@ -24,6 +24,7 @@ function adjustYAxesTitlePositions(){
 function onLoadFunction(){
     addNote.call(this);
     adjustYAxesTitlePositions.call(this);
+    console.log(this);
 }
 
 export const HighchartsDefaults = {

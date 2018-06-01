@@ -1,6 +1,28 @@
 export const sharedLineMethods = { // as an exported module `this` depends on context in which method is called
 
+    updateChart(){
+        sharedLineMethods.togglePoint.call(this,0,1);
+        sharedLineMethods.togglePoint.call(this,0,17);
+        sharedLineMethods.togglePoint.call(this,1,30);
+        sharedLineMethods.togglePoint.call(this,2);            
+        sharedLineMethods.togglePoint.call(this,3);                        
+    },
     createSeries(data){ 
+        var array = data.map((series, i) => {
+            var data = [];
+            for ( var year = 2000; year < 2036; year++ ){
+                data.push(series[year.toString()]);
+            }
+            return {
+                name: series.series,
+                data: data,
+                className: i === 0 ? 'solid' : 'shortdot'
+            }
+        });
+        
+        return array;
+    },
+    createNullSeries(data){ 
         var array = data.map((series, i) => {
             console.log(series);
             var data = [];
@@ -109,21 +131,38 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             },500);  // set bac to 500;
         });
     },
-    toggleLastPoint(series){
-        var lastPoint = this.Highchart.series[series].points[this.Highchart.series[series].points.length - 1];
+    togglePoint(series, point = 'last'){
+        var lastPoint;
+        if ( point === 'last' ){
+            lastPoint = this.Highchart.series[series].points[this.Highchart.series[series].points.length - 1];
+        } else {
+            lastPoint = this.Highchart.series[series].points[point];
+        }
         lastPoint.select(null, true);
     },
     createMask(onclickFn){
         var div = document.createElement('div');
         div.className = 'overlay-play';
         div.setAttribute('title','Click or tap to start animation');
+        div.setAttribute('tabindex', 0);
         var tri = document.createElement('div');
         tri.className = 'triangle-right';
         div.appendChild(tri);
+        var dismiss = document.createElement('button');
+        dismiss.innerText = 'skip animation';
+        dismiss.className = 'dismiss-button';
+        div.appendChild(dismiss);
         this.Highchart.renderTo.insertAdjacentHTML('afterbegin', div.outerHTML);
         var overlay = this.Highchart.renderTo.querySelector('.overlay-play');
         overlay.onclick = () => {
             onclickFn.call(this);
+        };
+        this.Highchart.renderTo.querySelector('.dismiss-button').onclick = function(e){
+            overlay.onclick = '';
+            overlay.classList.add('clicked');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            },250);
         };
 
     }

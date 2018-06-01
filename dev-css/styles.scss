@@ -39,11 +39,9 @@
   bottom: 0;
   left: 0;
   z-index: 99;
-  background-color: #e6e7e8;
-  border: 2px solid #e6e7e8;
+  background-color: rgba(255,255,255,0.3);
   cursor: pointer;
   transition: opacity 0.2s linear, background-color 0.2s linear;
-  opacity: 1;
   border-radius: 10px;
   &.clicked {
     opacity: 0;
@@ -53,7 +51,7 @@
     width: 0;
     height: 0;
     border-top: 50px solid transparent;
-    border-left: 100px solid #051839;
+    border-left: 100px solid rgba(#051839,0.8);
     border-bottom: 50px solid transparent;
     position: relative;
     left: 50%;
@@ -62,10 +60,16 @@
     transition: border-left-color 0.2s linear;
   }
   &:hover {
-    background-color: #fff; 
+    background-color: transparent;
+     
     .triangle-right {
-      border-left: 100px solid #0064af;
+      border-left: 100px solid rgba(#0064af, 0.8);
     }
+  }
+  .dismiss-button {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 
