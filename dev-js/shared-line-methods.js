@@ -122,7 +122,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
                     this.Highchart.series[series].addPoint(this.dataSource[series][current.toString()]);
                     current++;
                 } else {
-                    sharedLineMethods.toggleLastPoint.call(this, series);
+                    sharedLineMethods.togglePoint.call(this, series);
                     setTimeout(() => {
                         resolve(true);
                     },delay);
@@ -150,20 +150,26 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         div.appendChild(tri);
         var dismiss = document.createElement('button');
         dismiss.innerText = 'skip animation';
-        dismiss.className = 'dismiss-button';
+        dismiss.className = 'dismiss-button magazine-button--small';
+        dismiss.setAttribute('title','Click or tap to skip the animation');
         div.appendChild(dismiss);
         this.Highchart.renderTo.insertAdjacentHTML('afterbegin', div.outerHTML);
         var overlay = this.Highchart.renderTo.querySelector('.overlay-play');
         overlay.onclick = () => {
             onclickFn.call(this);
+            removeOverlay();
         };
         this.Highchart.renderTo.querySelector('.dismiss-button').onclick = function(e){
+            e.stopPropagation();
+            removeOverlay();
+        };
+        function removeOverlay(){
             overlay.onclick = '';
             overlay.classList.add('clicked');
             setTimeout(() => {
                 overlay.style.display = 'none';
             },250);
-        };
+        }
 
     }
 };

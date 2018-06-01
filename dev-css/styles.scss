@@ -51,7 +51,7 @@
     width: 0;
     height: 0;
     border-top: 50px solid transparent;
-    border-left: 100px solid rgba(#051839,0.8);
+    border-left: 100px solid rgba(#064782,0.85);
     border-bottom: 50px solid transparent;
     position: relative;
     left: 50%;
@@ -63,23 +63,34 @@
     background-color: transparent;
      
     .triangle-right {
-      border-left: 100px solid rgba(#0064af, 0.8);
+      border-left: 100px solid rgba(#aedb90, 0.85);
+    }
+    .dismiss-button {
+      opacity: 1;
     }
   }
   .dismiss-button {
-    position: absolute;
-    top: 0;
-    right: 0;
+    opacity: 0.8;
   }
 }
 
-
-.overlay-replay {
-    padding: 3px;
-    font-size: 0.6em;
+.dismiss-button, .overlay-replay {
     position: absolute;
+    bottom: 0;
     right: 0;
-    z-index: 99;
+    color: #064782 !important;
+    background-color: transparent !important;
+    box-shadow: none;
+    border-bottom: 3px solid transparent;
+    padding:0 !important;
+    font-size: 0.6em !important;
+    &:hover {
+      border-bottom-color: #aedb90;
+    }
+  }
+
+.dismiss-button {
+  opacity: 0.8 !important;
 }
 
 g.title-high text {
@@ -120,12 +131,15 @@ g.highcharts-annotation[visibility="hidden"]{
 
 .chart-container {
   position: relative;
+  padding-bottom: 0.85em;
+  margin-bottom:1em;
 }
 
 .chart-container form label {
   display: initial;
   font-family: inherit;
   margin-right:1em;
+  
 
   input[type="checkbox"], input[type="radio"] {
     float:none;
