@@ -127,7 +127,7 @@ function customUpdate(isReplay){ // update function for this chart only
                                                                                 toggleLastPoint.call(this,1);
                                                                                 toggleLastPoint.call(this,2);
                                                                                 toggleLastPoint.call(this,3);
-                                                                                annotateYear.call(this, 2, 2035, 'The Annual Energy Outlook estimates have decreased considerably over time and predict that gas prices will remain low. Lower-than-expected gas prices have big consequences for estimates of future baseline emissions and the effects of carbon taxes.', 'right');
+                                                                                annotateYear.call(this, 2, 2035, 'The Annual Energy Outlook estimates have decreased considerably over time and predict that gas prices will remain low. Lower-than-expected gas prices have big consequences for estimates of future baseline emissions and the effects of carbon taxes.', 'left');
                                                                                 setTimeout(() => {
                                                                                     this.Highchart.annotations[11].setVisible(false); 
                                                                                     togglableElements.forEach(el => {

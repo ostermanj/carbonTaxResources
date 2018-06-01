@@ -112,12 +112,12 @@ function customUpdate(isReplay){ // update function for this chart only
                                                         this.Highchart.annotations[7].setVisible(false); 
                                                         backfillSeries.call(this, 3, 2014, 2016);
                                                         toggleLastPoint.call(this, 3);
-                                                        annotateYear.call(this, 3, 2016, `In 2016, yet another Annual Energy Outlook was released with projections pinned to 2014 numbers.`, 'right');
+                                                        annotateYear.call(this, 3, 2016, `In 2016, another Annual Energy Outlook was released with projections pinned to 2014 numbers.`, 'right');
                                                         setTimeout(() => {
                                                             toggleLastPoint.call(this,3);
                                                             this.Highchart.annotations[8].setVisible(false); 
                                                             animateSeries.call(this, 3, 2017, 2017).then(() => {
-                                                                annotateYear.call(this, 3, 2017, `This one predicted sales increasing slightly to  ${ Highcharts.numberFormat(this.dataSource[3]['2017'], 0) } billion kWh in 2017.`, 'right');
+                                                                annotateYear.call(this, 3, 2017, `It predicted sales increasing slightly to  ${ Highcharts.numberFormat(this.dataSource[3]['2017'], 0) } billion kWh in 2017.`, 'right');
                                                                 setTimeout(() => {
                                                                     toggleLastPoint.call(this,0);
                                                                     this.Highchart.annotations[9].setVisible(false); 
