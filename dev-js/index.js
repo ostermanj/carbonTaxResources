@@ -3,4 +3,4 @@ import HighchartApp from './highchart-app.js';
 var chartConfigs = [require('../chart-configs/sales-config.js').default];
 console.log(HighchartApp, chartConfigs);
 
-HighchartApp.chartController.init(chartConfigs);    
+HighchartApp.chartController.init(chartConfigs);      

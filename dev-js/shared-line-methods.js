@@ -1,11 +1,33 @@
 export const sharedLineMethods = { // as an exported module `this` depends on context in which method is called
 
     updateChart(){
-        sharedLineMethods.togglePoint.call(this,0,1);
-        sharedLineMethods.togglePoint.call(this,0,17);
-        sharedLineMethods.togglePoint.call(this,1,30);
-        sharedLineMethods.togglePoint.call(this,2);            
-        sharedLineMethods.togglePoint.call(this,3);                        
+                            
+    },
+    prepAnimation(){
+        this.Highchart.annotations.forEach(note => {
+            note.destroy();
+        });
+        this.Highchart.annotations = []; // destroy notes and empty the array to keep from doubling annotations
+                                         // on replay
+        this.Highchart.yAxis[0].setExtremes(this.yAxis.startMin,this.yAxis.startMax);
+        this.Highchart.xAxis[0].setExtremes(this.xAxis.startMin,this.xAxis.startMax);
+        this.series = sharedLineMethods.createNullSeries(this.dataSource); // replace the series data with nulls as starting point for animation
+        this.Highchart.update({series: this.series});
+        this.hideShowElements.forEach(el => {
+            el.style.opacity = 0;
+        });
+    },
+    createOverlayReplay(replayFn){
+        var replay = document.createElement('button');
+        replay.className = 'overlay-replay magazine-button--small';
+        replay.setAttribute('title','Click or tap replay the animation');
+        replay.innerText = 'replay';
+        this.Highchart.renderTo.insertAdjacentHTML('afterbegin',replay.outerHTML);
+        var btn = this.Highchart.renderTo.querySelector('.overlay-replay');
+        btn.style.opacity = 0;
+        btn.onclick = () => {
+            replayFn.call(this);
+        };
     },
     createSeries(data){ 
         var array = data.map((series, i) => {

@@ -3,62 +3,37 @@ const dataSource = require('../data/sales.json');
 //import hcApp from '../dev-js/highchart-app.js';
 import { sharedLineMethods } from '../dev-js/shared-line-methods.js';
 
+
+
 function customUpdate(isReplay){ // update function for this chart only
-    console.log(this.Highchart.renderTo);
-
-  /*  var elementWatcher = scrollmonitor.create(this.Highchart.renderTo);
-    elementWatcher.fullyEnterViewport(() => {
-   //     animate.call(this);
-        elementWatcher.destroy();
-    });*/
-
-    var replay = document.createElement('button');
-    replay.className = 'overlay-replay magazine-button--small';
-    replay.setAttribute('title','Click or tap replay the animation');
-    replay.innerText = 'replay';
-    this.Highchart.renderTo.insertAdjacentHTML('afterbegin',replay.outerHTML);
-    var btn = this.Highchart.renderTo.querySelector('.overlay-replay');
-    btn.style.opacity = 0;
-    btn.onclick = () => {
-        btn.parentNode.removeChild(btn);
-        animate.call(this);
-    };
-
-
-
-    this.Highchart.setClassName('predicted-sales');
+    console.log('customUpdate', isReplay);
+    function showInitialPoints(){
+        sharedLineMethods.togglePoint.call(this,0,1);
+        sharedLineMethods.togglePoint.call(this,0,17);
+        sharedLineMethods.togglePoint.call(this,1,30);
+        sharedLineMethods.togglePoint.call(this,2);            
+        sharedLineMethods.togglePoint.call(this,3);    
+    }
     
- 
     if ( !isReplay ){
+        console.log('!isReplay');
+        this.Highchart.setClassName('predicted-sales');
+        showInitialPoints.call(this); 
         sharedLineMethods.createMask.call(this, animate);
-    } 
+        sharedLineMethods.createOverlayReplay.call(this, animate);
+        this.hideShowElements = this.Highchart.renderTo.querySelectorAll('.overlay-replay'); // the elements to hide during animation and show when finished
+    }
 
     function animate(){
-        this.Highchart.annotations.forEach(note => {
-            note.destroy();
-        });
-        this.Highchart.annotations = [];
-        this.Highchart.yAxis[0].setExtremes(this.yAxis.startMin,this.yAxis.startMax);
-        this.Highchart.xAxis[0].setExtremes(this.xAxis.startMin,this.xAxis.startMax);
-
         
-        this.series = sharedLineMethods.createNullSeries(this.dataSource);
-        this.Highchart.update({series: this.series});
-        //this.Highchart = new Highcharts.chart(container, this);
-      //  this.updateFunction(...this.initialUpdateParams, true);
-
-        var togglableElements = this.Highchart.renderTo.querySelectorAll('.overlay-replay');
-        togglableElements.forEach(el => {
-            el.style.opacity = 0;
-        });
-    
+        sharedLineMethods.prepAnimation.call(this);
         const annotateYear = sharedLineMethods.annotateYear;
         const backfillSeries = sharedLineMethods.backfillSeries;
         const animateSeries = sharedLineMethods.animateSeries;
         const togglePoint = sharedLineMethods.togglePoint;
 
 
-       setTimeout(() => {
+        setTimeout(() => {
             var timeoutDelay = 300; // set back to 3000
             this.Highchart.series[0].addPoint(this.dataSource[0]['2000']);
             this.Highchart.series[0].addPoint(this.dataSource[0]['2001']);
@@ -138,7 +113,8 @@ function customUpdate(isReplay){ // update function for this chart only
                                                                                     annotateYear.call(this, 2, 2035, 'The Annual Energy Outlook estimates have flattened over the years in response to lower-than-expected sales. That has consequences for estimates of future baseline emissions and the effects of carbon taxes.', 'left');
                                                                                     setTimeout(() => {
                                                                                         this.Highchart.annotations[11].setVisible(false); 
-                                                                                        togglableElements.forEach(el => {
+                                                                                        this.hideShowElements.forEach(el => {
+                                                                                            console.log(el);
                                                                                             el.style.opacity = 1;
                                                                                         });
                                                                                         this.Highchart.update({plotOptions: {series: {enableMouseTracking: true}}});
@@ -247,6 +223,7 @@ export default {
     dataSource: dataSource,
     seriesCreator: sharedLineMethods.createSeries,
     updateFunction: function(){
+        console.log('inUpdateFunction');
         sharedLineMethods.updateChart.call(this);
         customUpdate.call(this);
     },
