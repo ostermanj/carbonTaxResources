@@ -4,6 +4,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
                             
     },
     prepAnimation(){
+        this.Highchart.update({plotOptions: {series: {enableMouseTracking: false}}});
         this.Highchart.annotations.forEach(note => {
             note.destroy();
         });
