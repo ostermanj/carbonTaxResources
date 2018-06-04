@@ -1,6 +1,14 @@
 export default function(options){
-    console.log(options);
+    //var container = document.createElement('div');
+    //container.className = ' form-container flex space-between';
+
     var form = document.createElement('form');
+    form.className = options.userOptions.type;
+    var set = document.createElement('fieldset');
+    var optionsContainer = document.createElement('div');
+    var legend = document.createElement('legend');
+    legend.innerText = options.userOptions.legend;
+    set.appendChild(legend);
     options.userOptions.options.forEach((s,i) => {
         var label = document.createElement('label');
         label.setAttribute('for', 'r-' + options.Highchart.container.id + '-' + i);
@@ -14,8 +22,10 @@ export default function(options){
         }
         label.appendChild(option);
         label.insertAdjacentHTML('beforeend',s.value);
-        form.appendChild(label);
+        optionsContainer.appendChild(label);
     });
+    set.appendChild(optionsContainer);
+    form.appendChild(set);
     options.Highchart.renderTo.insertAdjacentHTML('afterbegin', form.outerHTML);
     //console.log(options.Highchart.renderTo);
     var rendered = options.Highchart.renderTo.querySelector('form');

@@ -1,3 +1,27 @@
+.radio fieldset {
+  transition: border-color 0.1s ease-out;
+  border: 1px solid #bfccd7;
+  padding-left: 0.34em;
+  &:hover {
+    border-color: #809ab0;
+    legend {
+      border-color: #809ab0;
+    }
+    label {
+      color: #00163a;
+    }
+  }
+  legend {
+    display: inline;
+    width: initial;
+    font-size: 90%;
+    padding: 0 5px;
+    margin-bottom: -0.2em;
+
+
+  }
+}
+
 .highcharts-annotation, .highcharts-annotation-labels, .highcharts-annotation-label {
   width: 100%;
 }

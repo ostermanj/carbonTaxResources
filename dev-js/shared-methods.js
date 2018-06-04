@@ -40,9 +40,10 @@ export const sharedMethods = { // as an exported module `this` depends on contex
     userOptions: {
         type: 'radio',
         options: [
-            {key: 'baseline', value: 'No carbon tax'},
-            {key: 'twenty-five', value: '$25/ton tax'},
-            {key: 'fifty', value: '$50/ton tax'}
-        ]
+            {key: 'baseline', value: 'None'},
+            {key: 'twenty-five', value: '$25/ton'},
+            {key: 'fifty', value: '$50/ton'}
+        ],
+        legend: 'Carbon tax'
     }
 };
