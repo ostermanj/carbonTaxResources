@@ -34,17 +34,17 @@ function customUpdate(isReplay){ // update function for this chart only
 
 
         setTimeout(() => {
-            var timeoutDelay = 300; // set back to 3000
+            var timeoutDelay = 3000; // set back to 3000
             this.Highchart.series[0].addPoint(this.dataSource[0]['2000']);
             this.Highchart.series[0].addPoint(this.dataSource[0]['2001']);
             this.Highchart.series[0].points[1].select(true, true);
-            annotateYear.call(this, 0, 2001, `In 2001, electricity sales totaled ${ Highcharts.numberFormat(this.dataSource[0]['2001'], 0) } billion kWh.`, 'left');
+            annotateYear.call(this, 0, 2001, `In 2001, electricity sales totaled ${ Highcharts.numberFormat(this.dataSource[0]['2001'], 0) } TWh.`, 'left');
 
             setTimeout(() =>{
 
                 var step1 = animateSeries.call(this, 0, 2002, 2006).then(() => {
                     this.Highchart.annotations[0].setVisible(false);
-                    annotateYear.call(this, 0, 2006, `By 2006, sales reached ${ Highcharts.numberFormat(this.dataSource[0]['2006'], 0) } billion kWh.`, 'left');
+                    annotateYear.call(this, 0, 2006, `By 2006, sales reached ${ Highcharts.numberFormat(this.dataSource[0]['2006'], 0) } TWh.`, 'left');
                     setTimeout(() => {
                         backfillSeries.call(this, 1, 2006, 2009);//.then(() => {
                         this.Highchart.annotations[1].setVisible(false);
@@ -58,7 +58,7 @@ function customUpdate(isReplay){ // update function for this chart only
                             
                                 backfillSeries.call(this, 1, 2010, 2017);
                                 togglePoint.call(this, 1);
-                                annotateYear.call(this, 1, 2017, `It predicted sales increasing to ${ Highcharts.numberFormat(this.dataSource[1]['2017'], 0) } billion kWh in 2017.`, 'right');
+                                annotateYear.call(this, 1, 2017, `It predicted sales increasing to ${ Highcharts.numberFormat(this.dataSource[1]['2017'], 0) } TWh in 2017.`, 'right');
                                 setTimeout(() => {
                                     togglePoint.call(this, 0);
                                     this.Highchart.annotations[3].setVisible(false);
@@ -74,7 +74,7 @@ function customUpdate(isReplay){ // update function for this chart only
                                                 this.Highchart.annotations[5].setVisible(false);
                                                 backfillSeries.call(this, 2, 2012, 2017);
                                                 togglePoint.call(this, 2);
-                                                annotateYear.call(this, 2, 2017, `It predicted sales increasing to ${ Highcharts.numberFormat(this.dataSource[2]['2017'], 0) } billion kWh in 2017.`, 'right');
+                                                annotateYear.call(this, 2, 2017, `It predicted sales increasing to ${ Highcharts.numberFormat(this.dataSource[2]['2017'], 0) } TWh in 2017.`, 'right');
                                                 //togglePoint.call(this, 2);
                                                 setTimeout(() => {
                                                    this.Highchart.annotations[6].setVisible(false); 
@@ -90,7 +90,7 @@ function customUpdate(isReplay){ // update function for this chart only
                                                                 togglePoint.call(this,3);
                                                                 this.Highchart.annotations[8].setVisible(false); 
                                                                 animateSeries.call(this, 3, 2017, 2017).then(() => {
-                                                                    annotateYear.call(this, 3, 2017, `It predicted sales increasing slightly to  ${ Highcharts.numberFormat(this.dataSource[3]['2017'], 0) } billion kWh in 2017.`, 'right');
+                                                                    annotateYear.call(this, 3, 2017, `It predicted sales increasing slightly to  ${ Highcharts.numberFormat(this.dataSource[3]['2017'], 0) } TWh in 2017.`, 'right');
                                                                     setTimeout(() => {
                                                                         togglePoint.call(this,0);
                                                                         this.Highchart.annotations[9].setVisible(false); 
@@ -194,7 +194,7 @@ export default {
         text: 'U.S. electricity demand, actual and estimated',
     },
     tooltip: {
-        valueDecimals: 2,
+        valueDecimals: 0,
         valueSuffix: ' TWh'
     },
     xAxis: {

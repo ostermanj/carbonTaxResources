@@ -31,7 +31,7 @@ function customUpdate(isReplay){ // update function for this chart only
 
         
         setTimeout(() => {
-            var timeoutDelay = 300; // set back to 3000
+            var timeoutDelay = 3000; // set back to 3000
             this.Highchart.series[0].addPoint(this.dataSource[0]['2000']);
             this.Highchart.series[0].addPoint(this.dataSource[0]['2001']);
             this.Highchart.series[0].points[1].select(true, true);
@@ -192,7 +192,7 @@ export default {
         min: 2001,
         max: 2035,
         startMin: 2001,
-        startMax: 2035
+        startMax: 2018
     },
     yAxis: {
         min: 0,

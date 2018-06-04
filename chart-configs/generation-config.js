@@ -18,7 +18,7 @@ export default {
     title: {
         /* extends Highcharts */
         formatter: function(scenario){
-            return `Electricity generation in 2030 by source, with ${ scenario }`;
+            return `Electricity generation in 2030 by source, with ${ ( scenario === 'none') ? 'no' : scenario } tax`;
         }
         /* end */
     },

@@ -18,7 +18,7 @@ export default {
     title: {
         /* extends Highcharts */
         formatter: function(scenario){
-            return `Net emissions and emissions reductions in 2030 by type, with ${ scenario }`;
+            return `Net emissions and emissions reductions in 2030 by type, with ${ scenario === 'none' ? 'no' : scenario } tax`;
         }
         /* end */
     },
