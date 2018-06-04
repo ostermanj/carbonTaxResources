@@ -2,65 +2,41 @@ const dataSource = require('../data/gas-prices.json');
 import { sharedLineMethods } from '../dev-js/shared-line-methods.js';
 
 function customUpdate(isReplay){ // update function for this chart only
-    console.log(this.Highchart.renderTo);
-
-    var replay = document.createElement('button');
-    replay.classList.add('overlay-replay');
-    replay.innerText = 'replay';
-    this.Highchart.renderTo.insertAdjacentHTML('afterbegin',replay.outerHTML);
-    var btn = this.Highchart.renderTo.querySelector('.overlay-replay');
-    btn.onclick = () => {
-        btn.parentNode.removeChild(btn);
-        replayChart.call(this);
-    };
+   
+    function showInitialPoints(){
+        sharedLineMethods.togglePoint.call(this,0,1);
+        sharedLineMethods.togglePoint.call(this,0,17);
+        sharedLineMethods.togglePoint.call(this,1,30);
+        sharedLineMethods.togglePoint.call(this,2);            
+        sharedLineMethods.togglePoint.call(this,3);    
+    }
 
 
-
-    this.Highchart.setClassName('predicted-gas-prices');
-    var togglableElements = this.Highchart.renderTo.querySelectorAll('.overlay-replay, .highcharts-title, .highcharts-subtitle, .highcharts-yaxis-grid, .highcharts-axis, .highcharts-axis-labels, .highcharts-legend, .highcharts-credits, .highcharts-note');
-    togglableElements.forEach(el => {
-        el.style.opacity = 0;
-    });
- 
     if ( !isReplay ){
+        this.Highchart.setClassName('predicted-gas-prices');
+        showInitialPoints.call(this);
         sharedLineMethods.createMask.call(this, animate);
-    } else {
-        animate.call(this);
-    }
+        sharedLineMethods.createOverlayReplay.call(this, animate);
+        this.hideShowElements = this.Highchart.renderTo.querySelectorAll('.overlay-replay'); // the elements to hide during animation and show when finished
+    } 
 
-    function replayChart(){
-        var chart = this.Highchart;
-        var container = chart.renderTo;
-        this.Highchart.destroy();
-        this.series = this.seriesCreator(this.dataSource);
-        this.Highchart = new Highcharts.chart(container, this);
-        this.updateFunction(...this.initialUpdateParams, true);
-    }
-
+   
     function animate(){
-    
+       
+        sharedLineMethods.prepAnimation.call(this);
         const annotateYear = sharedLineMethods.annotateYear;
         const backfillSeries = sharedLineMethods.backfillSeries;
         const animateSeries = sharedLineMethods.animateSeries;
         const togglePoint = sharedLineMethods.togglePoint;
 
-        if ( !isReplay ) {
-            let overlay = this.Highchart.renderTo.querySelector('.overlay-play');
-            overlay.onclick = '';
-            overlay.classList.add('clicked');
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            },250);
-        }
-
-       this.Highchart.series[0].addPoint(this.dataSource[0]['2000']);
-       this.Highchart.series[0].addPoint(this.dataSource[0]['2001']);
-       this.Highchart.series[0].points[1].select(true, true);
-       annotateYear.call(this, 0, 2001, `In 2001, natural gas prices averaged $${ Highcharts.numberFormat(this.dataSource[0]['2001'], 2) } per million Btu.`, 'left');
-       setTimeout(() => {
-
-           
-            var timeoutDelay = 3000; // set back to 3000
+        
+        setTimeout(() => {
+            var timeoutDelay = 300; // set back to 3000
+            this.Highchart.series[0].addPoint(this.dataSource[0]['2000']);
+            this.Highchart.series[0].addPoint(this.dataSource[0]['2001']);
+            this.Highchart.series[0].points[1].select(true, true);
+            annotateYear.call(this, 0, 2001, `In 2001, natural gas prices averaged $${ Highcharts.numberFormat(this.dataSource[0]['2001'], 2) } per million Btu.`, 'left');
+            
             var step1 = animateSeries.call(this, 0, 2002, 2006).then(() => {
                 this.Highchart.annotations[0].setVisible(false);
                 annotateYear.call(this, 0, 2006, `They peaked in 2005 at $${ Highcharts.numberFormat(this.dataSource[0]['2005'], 2) } per million Btu and then fell back to $${ Highcharts.numberFormat(this.dataSource[0]['2006'], 2) } in 2006.`, 'left');
@@ -130,7 +106,7 @@ function customUpdate(isReplay){ // update function for this chart only
                                                                                 annotateYear.call(this, 2, 2035, 'The Annual Energy Outlook estimates have decreased considerably over time and predict that gas prices will remain low. Lower-than-expected gas prices have big consequences for estimates of future baseline emissions and the effects of carbon taxes.', 'left');
                                                                                 setTimeout(() => {
                                                                                     this.Highchart.annotations[11].setVisible(false); 
-                                                                                    togglableElements.forEach(el => {
+                                                                                    this.hideShowElements.forEach(el => {
                                                                                         el.style.opacity = 1;
                                                                                     });
                                                                                     this.Highchart.update({plotOptions: {series: {enableMouseTracking: true}}});
@@ -189,7 +165,6 @@ export default {
         series: {
             allowPointSelect:true,
             connectNulls: true,
-            enableMouseTracking: false, // will be set to true after animation is finished
             marker: {
                 radius:0.01,
                 states: {
@@ -215,11 +190,15 @@ export default {
     },
     xAxis: {
         min: 2001,
-        max: 2018
+        max: 2035,
+        startMin: 2001,
+        startMax: 2035
     },
     yAxis: {
-        max: 10,
         min: 0,
+        max: 10,
+        startMin: 0,
+        startMax: 10,
         title: {
             text: '$(2011) per million Btu',
             align:'high',
@@ -234,7 +213,11 @@ export default {
     // extends Highcharts options
     dataSource: dataSource,
     seriesCreator: sharedLineMethods.createSeries,
-    updateFunction: customUpdate,
+    updateFunction: function(){
+        console.log('inUpdateFunction');
+        sharedLineMethods.updateChart.call(this);
+        customUpdate.call(this);
+    },
     initialUpdateParams: [],
     note: 'Sources: U.S. Energy Information Administration (EIA), Annual Energy Outlook (2009, 2011, and 2016); EIA Monthly Energy Review, April 2018.',
 };
