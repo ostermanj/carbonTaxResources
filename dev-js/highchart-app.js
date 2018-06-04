@@ -65,7 +65,9 @@ var fullAPI = (function(){
                 document.fonts.ready.then(() => {
                     clearTimeout(initTimer);
                     if ( !this.isInitialized ){
-                        this.initCharts(chartConfigs);
+                        setTimeout(() => { // small timeout to ensure fonts are indeed ready
+                            this.initCharts(chartConfigs);
+                        },50);
                     }
                 });
             } else {
