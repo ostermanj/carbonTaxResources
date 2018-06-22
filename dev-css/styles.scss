@@ -56,7 +56,7 @@
 
 
 
-.overlay-play {
+/*.overlay-play {
   position: absolute;
   top:0;
   right: 0;
@@ -68,27 +68,67 @@
   transition: opacity 0.2s linear, background-color 0.2s linear;
   border-radius: 10px;
   &.clicked {
-    opacity: 0;
     cursor: default;
-  }
-  .triangle-right {
+    .triangle {
+      opacity: 0;
+      &.triangle-next, &.triangle-previous {
+        opacity: 1;
+      }
+    }
+  }*/
+.chart-container {
+  .triangle {
     width: 0;
     height: 0;
     border-top: 50px solid transparent;
-    border-left: 100px solid rgba(#064782,0.85);
     border-bottom: 50px solid transparent;
-    position: relative;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    transition: border-left-color 0.2s linear;
+    transition: border-left-color 0.2s linear, border-right-color 0.2s linear, opacity 0.2s linear;
+    position: absolute;
+    opacity: 0.85;
+    z-index: 9;
+    cursor: pointer;
+    &.triangle-right {
+      border-left: 100px solid #064782;
+      &:hover {
+        border-left-color: #aedb90;
+      }
+      &.triangle-next {
+        border-left-width:25px;
+        left: 100%;
+        visibility:hidden;
+        &.show {
+          visibility: visible;
+        }
+      }
+    }
+    &.triangle-left {
+      border-right: 100px solid #064782;
+      &:hover {
+        border-right-color: #aedb90;
+      }
+      &.triangle-previous {
+        border-right-width: 25px;
+        left: 0%;
+        visibility:hidden;
+        &.show {
+          visibility: visible;
+        }
+      }
+    }
   }
   &:hover {
-    background-color: transparent;
-     
-    .triangle-right {
-      border-left: 100px solid rgba(#aedb90, 0.85);
+    .triangle {
+      opacity: 1;
+    } 
+   /* .triangle-right {
+      border-left-color: #aedb90;
     }
+    .triangle-left {
+      border-right-color: #aedb90;
+    }*/
     .dismiss-button {
       opacity: 1;
     }
@@ -96,7 +136,11 @@
   .dismiss-button {
     opacity: 0.8;
   }
+  .triangle.clicked, .dismiss-button.clicked {
+    opacity: 0;
+  }
 }
+
 
 .dismiss-button, .overlay-replay {
     position: absolute;
@@ -113,9 +157,7 @@
     }
   }
 
-.dismiss-button {
-  opacity: 0.8 !important;
-}
+
 
 g.title-high text {
   text-anchor: start;

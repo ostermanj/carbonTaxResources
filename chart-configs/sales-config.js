@@ -19,7 +19,7 @@ function customUpdate(isReplay){ // update function for this chart only
         console.log('!isReplay');
         this.Highchart.setClassName('predicted-sales');
         showInitialPoints.call(this); 
-        sharedLineMethods.createMask.call(this, animate);
+        sharedLineMethods.createPlayButton.call(this, animate);
         sharedLineMethods.createOverlayReplay.call(this, animate);
         this.hideShowElements = this.Highchart.renderTo.querySelectorAll('.overlay-replay'); // the elements to hide during animation and show when finished
     }
@@ -174,6 +174,7 @@ export default {
     plotOptions: {
         series: {
             allowPointSelect:true,
+            enableMouseTracking: false,
             connectNulls: true,
             marker: {
                 radius:0.01,

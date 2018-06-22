@@ -4,6 +4,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
                             
     },
     prepAnimation(){
+        var duration = this.Highchart.userOptions.chart.animation.duration;
         this.Highchart.update({plotOptions: {series: {enableMouseTracking: false}}});
         this.Highchart.annotations.forEach(note => {
             note.destroy();
@@ -17,6 +18,34 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         this.hideShowElements.forEach(el => {
             el.style.opacity = 0;
         });
+        sharedLineMethods.createNextAndPrevious.call(this);
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(true);
+            }, duration);
+        });
+    },
+    createNextAndPrevious(){
+        var triNext = document.createElement('div');
+        triNext.className = 'triangle triangle-right triangle-next';
+        triNext.setAttribute('tabindex',0);
+        triNext.setAttribute('title','next');
+        var triPrevious = document.createElement('div');
+        triPrevious.className = 'triangle triangle-left triangle-previous';
+        triPrevious.setAttribute('tabindex',0);
+        triPrevious.setAttribute('title','previous');
+        this.Highchart.renderTo.insertAdjacentHTML('afterbegin', triNext.outerHTML);
+        this.Highchart.renderTo.insertAdjacentHTML('afterbegin', triPrevious.outerHTML);
+
+        this.renderedNext = this.Highchart.renderTo.querySelector('.triangle-next');
+        this.renderedPrevious = this.Highchart.renderTo.querySelector('.triangle-previous');
+        this.renderedNext.onclick = () => {
+            console.log(this);
+            this.animateNext.call(this);
+        };
+        this.renderedPrevious.onclick = () => {
+            this.animatePrevious.call(this);
+        }
     },
     createOverlayReplay(replayFn){
         var replay = document.createElement('button');
@@ -65,9 +94,10 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         
         return array;
     },
-    annotateYear(series, year, text, position){
+    annotateYear(series, year, text, position, isAsync){
+        console.log('annotateYear', this);
         var options = {
-        
+            id: this.Highchart.annotations.length,
             labelOptions: {
                 allowOverlap: true,
                 verticalAlign: 'top',
@@ -121,7 +151,11 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             options.labels[0].point.y = this.Highchart.axes[1].getExtremes().min;
         }*/
        this.Highchart.addAnnotation(options);
+       var offset = isAsync ? 1 : 0; // not great way to handle fact that currentStep is increments before async fn fires
+                                     //  better soluton would be to have all steps return increment only when finished
        this.Highchart.annotations[this.Highchart.annotations.length - 1].setVisible(true);
+       this.previousChange.annotations[this.currentStep - offset].push(this.Highchart.annotations[this.Highchart.annotations.length - 1]);
+       console.log('hello?', this.previousChange);
     },
     backfillSeries(series, begin, end ){ // ie 2006, 2009
         this.Highchart.series[series].addPoint(this.dataSource[series][begin.toString()]); // place the first point
@@ -133,6 +167,9 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         for ( let i = yearSpan; i > 1; i-- ){ //update the placeholders with data
             this.Highchart.series[series].points[this.Highchart.series[series].points.length - i].update(this.dataSource[series][(end - i + 1).toString()]);
         }
+        for ( let i = yearSpan; i >= 0; i-- ){
+            this.previousChange.points[this.currentStep].push(this.Highchart.series[series].points[this.Highchart.series[series].points.length - 1 - i]);
+        }
 
     },
     animateSeries(series, begin, end, delay = 500){
@@ -142,7 +179,10 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             var current = begin;
             var interval = setInterval(() => {
                 if ( current <= end ){
-                    this.Highchart.series[series].addPoint(this.dataSource[series][current.toString()]);
+                    console.log(this);
+                    // below you have to specify the x value or the points won't bein thr right place if you redo the animation
+                    this.Highchart.series[series].addPoint([current, this.dataSource[series][current.toString()]]);
+                    this.previousChange.points[this.currentStep - 1].push(this.Highchart.series[series].points[this.Highchart.series[series].points.length - 1]);
                     current++;
                 } else {
                     sharedLineMethods.togglePoint.call(this, series);
@@ -163,22 +203,21 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         }
         lastPoint.select(null, true);
     },
-    createMask(onclickFn){
-        var div = document.createElement('div');
-        div.className = 'overlay-play';
-        div.setAttribute('title','Click or tap to start animation');
-        div.setAttribute('tabindex', 0);
-        var tri = document.createElement('div');
-        tri.className = 'triangle-right';
-        div.appendChild(tri);
+    createPlayButton(onclickFn){
+        var playButton = document.createElement('div');
+        playButton.setAttribute('title','Click or tap to start animation');
+        playButton.setAttribute('tabindex', 0);
+        playButton.className = 'triangle triangle-right';
+        playButton.setAttribute('id','play-button');
         var dismiss = document.createElement('button');
         dismiss.innerText = 'skip animation';
         dismiss.className = 'dismiss-button magazine-button--small';
         dismiss.setAttribute('title','Click or tap to skip the animation');
-        div.appendChild(dismiss);
-        this.Highchart.renderTo.insertAdjacentHTML('afterbegin', div.outerHTML);
-        var overlay = this.Highchart.renderTo.querySelector('.overlay-play');
-        overlay.onclick = () => {
+        this.Highchart.renderTo.insertAdjacentHTML('afterbegin', playButton.outerHTML);
+        this.Highchart.renderTo.insertAdjacentHTML('afterbegin', dismiss.outerHTML);
+        var renderedPlayButton = this.Highchart.renderTo.querySelector('#play-button');
+        var renderedDismiss = this.Highchart.renderTo.querySelector('.dismiss-button');
+        renderedPlayButton.onclick = () => {
             onclickFn.call(this);
             removeOverlay();
         };
@@ -187,10 +226,12 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             removeOverlay();
         };
         function removeOverlay(){
-            overlay.onclick = '';
-            overlay.classList.add('clicked');
+            renderedPlayButton.onclick = '';
+            renderedPlayButton.classList.add('clicked');
+            renderedDismiss.classList.add('clicked');
             setTimeout(() => {
-                overlay.style.display = 'none';
+                renderedPlayButton.style.display = 'none';
+                renderedDismiss.style.display = 'none';
             },250);
         }
 
