@@ -5,7 +5,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
     },
     prepAnimation(){
         var duration = this.Highchart.userOptions.chart.animation.duration;
-        this.Highchart.update({plotOptions: {series: {enableMouseTracking: false}}});
+      //  this.Highchart.update({plotOptions: {series: {enableMouseTracking: false}}});
         this.Highchart.annotations.forEach(note => {
             note.destroy();
         });
@@ -94,8 +94,11 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         
         return array;
     },
-    annotateYear(series, year, text, position, isAsync){
+    annotateYear(series, year, text, position){
         console.log('annotateYear', this);
+        if (this.Highchart.annotations && this.Highchart.annotations.length > 0) {
+            this.Highchart.annotations[this.Highchart.annotations.length - 1].setVisible(false);
+        }
         var options = {
             id: this.Highchart.annotations.length,
             labelOptions: {
@@ -151,25 +154,46 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             options.labels[0].point.y = this.Highchart.axes[1].getExtremes().min;
         }*/
        this.Highchart.addAnnotation(options);
-       var offset = isAsync ? 1 : 0; // not great way to handle fact that currentStep is increments before async fn fires
-                                     //  better soluton would be to have all steps return increment only when finished
+      
        this.Highchart.annotations[this.Highchart.annotations.length - 1].setVisible(true);
-       this.previousChange.annotations[this.currentStep - offset].push(this.Highchart.annotations[this.Highchart.annotations.length - 1]);
+       console.log(this.previousChange, this.currentStep);
+       this.previousChange.annotations[this.currentStep].push(this.Highchart.annotations[this.Highchart.annotations.length - 1]);
        console.log('hello?', this.previousChange);
     },
     backfillSeries(series, begin, end ){ // ie 2006, 2009
-        this.Highchart.series[series].addPoint(this.dataSource[series][begin.toString()]); // place the first point
-        for ( let i = begin + 1; i < end ; i++){
-            this.Highchart.series[series].addPoint(null); // put in null placeholders for the points in between
-        }
-        this.Highchart.series[series].addPoint(this.dataSource[series][end.toString()]); // place the last point
-        var yearSpan = end - begin; // ie 3
-        for ( let i = yearSpan; i > 1; i-- ){ //update the placeholders with data
-            this.Highchart.series[series].points[this.Highchart.series[series].points.length - i].update(this.dataSource[series][(end - i + 1).toString()]);
-        }
-        for ( let i = yearSpan; i >= 0; i-- ){
-            this.previousChange.points[this.currentStep].push(this.Highchart.series[series].points[this.Highchart.series[series].points.length - 1 - i]);
-        }
+
+
+        return new Promise(resolve => {
+
+            // place the first point
+            this.Highchart.series[series].addPoint(this.dataSource[series][begin.toString()]); 
+            
+            // put in null placeholders for the points in between
+            for ( let i = begin + 1; i < end ; i++){
+                this.Highchart.series[series].addPoint(null); 
+            }
+
+            // place the last point
+            if ( end > begin ){
+                this.Highchart.series[series].addPoint(this.dataSource[series][end.toString()]); 
+            }
+            
+            //update the placeholders with data
+            var yearSpan = end - begin; // ie 0
+            for ( let i = yearSpan; i > 1; i-- ){ 
+                this.Highchart.series[series].points[this.Highchart.series[series].points.length - i].update(this.dataSource[series][(end - i + 1).toString()]);
+            }
+            console.log('series: ' + series, 'begin :' +  begin, 'end: ' + end);
+
+            // save state to previousChange object
+            for ( let i = yearSpan; i >= 0; i-- ){
+                console.log('i: ' + i);
+                this.previousChange.points[this.currentStep].push(this.Highchart.series[series].points[this.Highchart.series[series].points.length - 1 - i]);
+            }
+            console.log(this.previousChange.points[this.currentStep]);
+            resolve(true);
+
+        });
 
     },
     animateSeries(series, begin, end, delay = 500){
