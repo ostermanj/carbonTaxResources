@@ -5,7 +5,8 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
     },
     prepAnimation(){
         var duration = this.Highchart.userOptions.chart.animation.duration;
-      //  this.Highchart.update({plotOptions: {series: {enableMouseTracking: false}}});
+        this.Highchart.update({plotOptions: {series: {enableMouseTracking: false}}});
+        this.Highchart.renderTo.querySelector('.overlay-replay').style.opacity = 0;
 
         this.Highchart.renderTo.classList.remove('faded');
         this.Highchart.annotations.forEach(note => {
@@ -291,8 +292,11 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             this.Highchart.renderTo.classList.remove('faded');
             renderedPlayButton.onclick = '';
             renderedPlayButton.classList.add('clicked');
+            renderedDismiss.classList.add('clicked');
+
             setTimeout(() => {
                 renderedPlayButton.style.display = 'none';
+                renderedDismiss.style.display = 'none';
             },250);
         }
 

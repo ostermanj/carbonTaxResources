@@ -181,10 +181,14 @@ function customUpdate(isReplay){ // update function for this chart only
                 } else {
                     this.renderedNext.classList.remove('show');
                 }
-                if ( this.currentStep > 1 ){
+                if ( this.currentStep > 1 && this.currentStep < this.animationSteps.length  ){
                     this.renderedPrevious.classList.add('show');
                 } else {
                     this.renderedPrevious.classList.remove('show');
+                }
+                if ( this.currentStep === this.animationSteps.length ){
+                    this.Highchart.renderTo.querySelector('.overlay-replay').style.opacity = 1;
+                    this.currentStep = 0;
                 }
             }
         };
