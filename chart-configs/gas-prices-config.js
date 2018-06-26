@@ -59,6 +59,7 @@ function customUpdate(isReplay){ // update function for this chart only
    
     function animate(){ // TO DO: EVERYTHIGN BUT STEPS THEMSELVES SHOULD BE IN SHARED METHODS
         const annotateYear = sharedLineMethods.annotateYear;
+        const annotate = sharedLineMethods.annotate;
         const backfillSeries = sharedLineMethods.backfillSeries;
         const animateSeries = sharedLineMethods.animateSeries;
         const togglePoint = sharedLineMethods.togglePoint;
@@ -71,7 +72,7 @@ function customUpdate(isReplay){ // update function for this chart only
 
         this.animationSteps = [
             function(resolve){ // step 0
-                annotateYear.call(this, 0, 2000, `From 2000 to 2009, natural gas prices ranged from a low of $${ Highcharts.numberFormat(this.dataSource[0]['2002'], 2) } per million Btu in 2002 to $${ Highcharts.numberFormat(this.dataSource[0]['2005'], 2) } in 2005.`, 'left');
+                annotate.call(this, 0, `From 2000 to 2009, natural gas prices ranged from a low of $${ Highcharts.numberFormat(this.dataSource[0]['2002'], 2) } per million Btu in 2002 to $${ Highcharts.numberFormat(this.dataSource[0]['2005'], 2) } in 2005.`);
                  backfillSeries.call(this, 0, 2000, 2009).then(() => {
                     this.Highchart.series[0].points[0].select(true, true);
                     togglePoint.call(this, 0, 'last');
@@ -80,10 +81,11 @@ function customUpdate(isReplay){ // update function for this chart only
             },
             
             function(resolve){ // step 2,3
-                annotateYear.call(this, 1, 2009, `In 2009, an Annual Energy Outlook was released with projections pinned to 2006 numbers. It predicted prices increasing slightly to $${ Highcharts.numberFormat(this.dataSource[1]['2016'], 2) } in 2016.`, 'right');
+                annotate.call(this, 1, `In 2009, an Annual Energy Outlook was released with projections pinned to 2006 numbers. It predicted prices increasing slightly to $${ Highcharts.numberFormat(this.dataSource[1]['2016'], 2) } in 2016.`);
                  backfillSeries.call(this, 1, 2006, 2009).then(() => {
                     togglePoint.call(this, 1);
                     setTimeout(() => {
+                        togglePoint.call(this, 1);
                         backfillSeries.call(this, 1, 2010, 2016).then(() => {
                             togglePoint.call(this, 1);
                             resolve(true);
@@ -92,10 +94,11 @@ function customUpdate(isReplay){ // update function for this chart only
                 });
             },
             function(resolve){ // step 5
-                annotateYear.call(this, 2, 2011, `In 2011, another Annual Energy Outlook was released, with projections pinned to 2008 numbers. It predicted gas prices falling slightly by 2016, to $${ Highcharts.numberFormat(this.dataSource[2]['2016'], 2) }.`, 'right');
+                annotate.call(this, 2, `In 2011, another Annual Energy Outlook was released, with projections pinned to 2008 numbers. It predicted gas prices falling slightly by 2016, to $${ Highcharts.numberFormat(this.dataSource[2]['2016'], 2) }.`);
                 backfillSeries.call(this, 2, 2008, 2011).then(() => {
                     togglePoint.call(this, 2);
                     setTimeout(() => {
+                        togglePoint.call(this, 2);
                         backfillSeries.call(this, 2, 2012, 2016).then(() => {
                             togglePoint.call(this, 2);
                             resolve(true);
@@ -105,7 +108,7 @@ function customUpdate(isReplay){ // update function for this chart only
             },
             function(resolve){ // step 6
                 togglePoint.call(this,0);
-                annotateYear.call(this, 0, 2011, `The actual prices, however, remained lower than both estimates.`, 'right');
+                annotate.call(this, 0, `The actual prices, however, remained lower than both estimates.`);
                 backfillSeries.call(this, 0, 2010, 2016).then(() => {
                     togglePoint.call(this,0);
                     resolve(true);
@@ -120,10 +123,11 @@ function customUpdate(isReplay){ // update function for this chart only
                         togglePoint.call(this,2);
                         this.Highchart.axes[0].setExtremes(2000,2035);
                         setTimeout(() => {
-                            annotateYear.call(this, 3, 2016, `The 2016 Annual Energy Outlook, with projections pinned to 2014 numbers, predicts lower gas prices than the previous two.`, 'right');
+                            annotate.call(this, 3, `The 2016 Annual Energy Outlook, with projections pinned to 2014 numbers, predicts lower gas prices than the previous two.`);
                             backfillSeries.call(this, 3, 2014, 2016).then(() => {
                                 togglePoint.call(this, 3);
                                 setTimeout(() => {
+                                    togglePoint.call(this, 3);
                                     backfillSeries.call(this, 3, 2017, 2035)
                                     togglePoint.call(this, 3);
                                     resolve(true);
@@ -135,7 +139,7 @@ function customUpdate(isReplay){ // update function for this chart only
             },
             function(resolve){ // step 6
                 togglePoint.call(this,0);
-                annotateYear.call(this, 0, 2017, `Prices have risen since then but remain below the estimates.`, 'right');
+                annotate.call(this, 0, `Prices have risen since then but remain below the estimates.`);
                 backfillSeries.call(this, 0, 2017, 2017).then(() => {
                     togglePoint.call(this,0);
                     resolve(true);
@@ -251,7 +255,7 @@ export default {
         }
     },
     subtitle: {
-        text: 'Estimates have decreased over the years and now predict that low prices will continue.'
+        text: null
     },           
     title: {
         text: 'U.S. natural gas prices to the electric power sector, actual and estimated',

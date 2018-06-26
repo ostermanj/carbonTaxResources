@@ -160,6 +160,36 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
        this.previousChange.annotations[this.currentStep].push(this.Highchart.annotations[this.Highchart.annotations.length - 1]);
        console.log('hello?', this.previousChange);
     },
+    annotate(series, text){
+        console.log(series,text,this);
+        if (this.Highchart.annotations && this.Highchart.annotations.length > 0) {
+            this.Highchart.annotations[this.Highchart.annotations.length - 1].setVisible(false);
+        }
+        var options = {
+            id: this.Highchart.annotations.length,
+            labelOptions: {
+                allowOverlap: true,
+                verticalAlign: 'top',
+                visible: false,
+                align: 'left',
+                x: 10
+            },
+            labels: [{
+                point: {
+                    x:0,
+                    y:0
+                },
+                useHTML: true,
+                text: text,
+                className: 'full highcharts-color-' + series
+            }]    
+        };
+        
+       this.Highchart.addAnnotation(options);
+      
+       this.Highchart.annotations[this.Highchart.annotations.length - 1].setVisible(true);
+       this.previousChange.annotations[this.currentStep].push(this.Highchart.annotations[this.Highchart.annotations.length - 1]);
+    },
     backfillSeries(series, begin, end ){ // ie 2006, 2009
 
 
