@@ -6,6 +6,8 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
     prepAnimation(){
         var duration = this.Highchart.userOptions.chart.animation.duration;
       //  this.Highchart.update({plotOptions: {series: {enableMouseTracking: false}}});
+
+        this.Highchart.renderTo.classList.remove('faded');
         this.Highchart.annotations.forEach(note => {
             note.destroy();
         });
@@ -41,10 +43,16 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         this.renderedPrevious = this.Highchart.renderTo.querySelector('.triangle-previous');
         this.renderedNext.onclick = () => {
             console.log(this);
+            disableNextAndPrevious.call(this);
             this.animateNext.call(this);
         };
         this.renderedPrevious.onclick = () => {
+            disableNextAndPrevious.call(this);
             this.animatePrevious.call(this);
+        }
+        function disableNextAndPrevious(){
+            this.renderedPrevious.classList.add('disabled');
+            this.renderedNext.classList.add('disabled');
         }
     },
     createOverlayReplay(replayFn){
@@ -267,19 +275,22 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         dismiss.innerText = 'skip animation';
         dismiss.className = 'dismiss-button magazine-button--small';
         dismiss.setAttribute('title','Click or tap to skip the animation');
+        this.Highchart.renderTo.classList.add('faded');
         this.Highchart.renderTo.insertAdjacentHTML('afterbegin', playButton.outerHTML);
         this.Highchart.renderTo.insertAdjacentHTML('afterbegin', dismiss.outerHTML);
         var renderedPlayButton = this.Highchart.renderTo.querySelector('#play-button');
         var renderedDismiss = this.Highchart.renderTo.querySelector('.dismiss-button');
         renderedPlayButton.onclick = () => {
             onclickFn.call(this);
-            removeOverlay();
+            removeOverlay.call(this);
         };
-        this.Highchart.renderTo.querySelector('.dismiss-button').onclick = function(e){
+        renderedDismiss.onclick = (e) => {
             e.stopPropagation();
-            removeOverlay();
+            this.Highchart.update({plotOptions: {series: {enableMouseTracking: true}}});
+            removeOverlay.call(this);
         };
         function removeOverlay(){
+            this.Highchart.renderTo.classList.remove('faded');
             renderedPlayButton.onclick = '';
             renderedPlayButton.classList.add('clicked');
             renderedDismiss.classList.add('clicked');

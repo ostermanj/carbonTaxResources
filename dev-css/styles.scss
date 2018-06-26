@@ -110,8 +110,16 @@
         border-left-width:25px;
         left: 100%;
         visibility:hidden;
+        opacity: 0.5;
+        &:hover {
+          opacity: 1;
+        }
         &.show {
           visibility: visible;
+        }
+        &.disabled {
+          pointer-events: none;
+          opacity: 0;
         }
       }
     }
@@ -125,8 +133,16 @@
         border-right-width: 25px;
         left: 0%;
         visibility:hidden;
+        opacity: 0.5;
+        &:hover {
+          opacity: 1;
+        }
         &.show {
           visibility: visible;
+        }
+        &.disabled {
+          pointer-events: none;
+          opacity: 0;
         }
       }
     }
@@ -214,6 +230,14 @@ g.highcharts-annotation[visibility="hidden"]{
   position: relative;
   padding-bottom: 0.85em;
   margin-bottom:1em;
+  transition: opacity 0.2s linear;
+  opacity: 1;
+  &.faded {
+    opacity: 0.85;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
 .chart-container form label {

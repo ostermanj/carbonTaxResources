@@ -171,6 +171,8 @@ function customUpdate(isReplay){ // update function for this chart only
                 incrementStep.call(this);
             });
             function incrementStep(){
+                this.renderedNext.classList.remove('disabled');
+                this.renderedPrevious.classList.remove('disabled');
                 this.currentStep++;
                 console.log(this.currentStep);
                 
@@ -241,7 +243,7 @@ export default {
         series: {
             allowPointSelect:true,
             connectNulls: true,
-           // enableMouseTracking: false,
+            enableMouseTracking: false,
             marker: {
                 radius:0.01,
                 states: {
