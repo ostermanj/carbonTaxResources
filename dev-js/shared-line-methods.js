@@ -17,9 +17,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         this.Highchart.xAxis[0].setExtremes(this.xAxis.startMin,this.xAxis.startMax);
         this.series = sharedLineMethods.createNullSeries(this.dataSource); // replace the series data with nulls as starting point for animation
         this.Highchart.update({series: this.series});
-        this.hideShowElements.forEach(el => {
-            el.style.opacity = 0;
-        });
+
         sharedLineMethods.createNextAndPrevious.call(this);
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -198,32 +196,32 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
        this.Highchart.annotations[this.Highchart.annotations.length - 1].setVisible(true);
        this.previousChange.annotations[this.currentStep].push(this.Highchart.annotations[this.Highchart.annotations.length - 1]);
     },
-    backfillSeries(series, begin, end ){ // ie 2006, 2009
+    fillSeries(series, begin, end ){ // ie 2006, 2009
 
 
         return new Promise(resolve => {
 
-            // place the first point
-            this.Highchart.series[series].addPoint(this.dataSource[series][begin.toString()]); 
-            
-            // put in null placeholders for the points in between
-            for ( let i = begin + 1; i < end ; i++){
-                this.Highchart.series[series].addPoint(null); 
+           
+            for ( let i = begin; i <= end; i++){
+                this.Highchart.series[series].addPoint([i, this.dataSource[series][i.toString()]]); 
             }
+           /* // place the first point
+            this.Highchart.series[series].addPoint(begin, this.dataSource[series][begin.toString()]); 
+            
 
             // place the last point
             if ( end > begin ){
-                this.Highchart.series[series].addPoint(this.dataSource[series][end.toString()]); 
+                this.Highchart.series[series].addPoint(end, this.dataSource[series][end.toString()]); 
             }
             
             //update the placeholders with data
-            var yearSpan = end - begin; // ie 0
             for ( let i = yearSpan; i > 1; i-- ){ 
                 this.Highchart.series[series].points[this.Highchart.series[series].points.length - i].update(this.dataSource[series][(end - i + 1).toString()]);
             }
             console.log('series: ' + series, 'begin :' +  begin, 'end: ' + end);
-
+*/
             // save state to previousChange object
+            var yearSpan = end - begin; // ie 0
             for ( let i = yearSpan; i >= 0; i-- ){
                 console.log('i: ' + i);
                 this.previousChange.points[this.currentStep].push(this.Highchart.series[series].points[this.Highchart.series[series].points.length - 1 - i]);
@@ -285,7 +283,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             removeOverlay.call(this);
         };
         renderedDismiss.onclick = (e) => {
-            e.stopPropagation();
+            console.log(this, HighchartApp);
             this.Highchart.update({plotOptions: {series: {enableMouseTracking: true}}});
             removeOverlay.call(this);
         };
@@ -293,10 +291,8 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             this.Highchart.renderTo.classList.remove('faded');
             renderedPlayButton.onclick = '';
             renderedPlayButton.classList.add('clicked');
-            renderedDismiss.classList.add('clicked');
             setTimeout(() => {
                 renderedPlayButton.style.display = 'none';
-                renderedDismiss.style.display = 'none';
             },250);
         }
 

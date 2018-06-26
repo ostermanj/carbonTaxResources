@@ -44,7 +44,8 @@ function customUpdate(isReplay){ // update function for this chart only
 
     this.previousChange = {
         points: [],
-        annotations: []
+        annotations: [],
+        extremes: []
     };
     this.currentStep = 0;
 
@@ -53,14 +54,13 @@ function customUpdate(isReplay){ // update function for this chart only
         showInitialPoints.call(this);
         sharedLineMethods.createPlayButton.call(this, animate);
         sharedLineMethods.createOverlayReplay.call(this, animate);
-        this.hideShowElements = this.Highchart.renderTo.querySelectorAll('.overlay-replay'); // the elements to hide during animation and show when finished
     } 
 
    
     function animate(){ // TO DO: EVERYTHIGN BUT STEPS THEMSELVES SHOULD BE IN SHARED METHODS
         const annotateYear = sharedLineMethods.annotateYear;
         const annotate = sharedLineMethods.annotate;
-        const backfillSeries = sharedLineMethods.backfillSeries;
+        const fillSeries = sharedLineMethods.fillSeries;
         const animateSeries = sharedLineMethods.animateSeries;
         const togglePoint = sharedLineMethods.togglePoint;
 
@@ -73,7 +73,7 @@ function customUpdate(isReplay){ // update function for this chart only
         this.animationSteps = [
             function(resolve){ // step 0
                 annotate.call(this, 0, `From 2000 to 2009, natural gas prices ranged from a low of $${ Highcharts.numberFormat(this.dataSource[0]['2002'], 2) } per million Btu in 2002 to $${ Highcharts.numberFormat(this.dataSource[0]['2005'], 2) } in 2005.`);
-                 backfillSeries.call(this, 0, 2000, 2009).then(() => {
+                 fillSeries.call(this, 0, 2000, 2009).then(() => {
                     this.Highchart.series[0].points[0].select(true, true);
                     togglePoint.call(this, 0, 'last');
                     resolve(true);
@@ -82,11 +82,11 @@ function customUpdate(isReplay){ // update function for this chart only
             
             function(resolve){ // step 2,3
                 annotate.call(this, 1, `In 2009, an Annual Energy Outlook was released with projections pinned to 2006 numbers. It predicted prices increasing slightly to $${ Highcharts.numberFormat(this.dataSource[1]['2016'], 2) } in 2016.`);
-                 backfillSeries.call(this, 1, 2006, 2009).then(() => {
+                 fillSeries.call(this, 1, 2006, 2009).then(() => {
                     togglePoint.call(this, 1);
                     setTimeout(() => {
                         togglePoint.call(this, 1);
-                        backfillSeries.call(this, 1, 2010, 2016).then(() => {
+                        fillSeries.call(this, 1, 2010, 2016).then(() => {
                             togglePoint.call(this, 1);
                             resolve(true);
                         });
@@ -95,11 +95,11 @@ function customUpdate(isReplay){ // update function for this chart only
             },
             function(resolve){ // step 5
                 annotate.call(this, 2, `In 2011, another Annual Energy Outlook was released, with projections pinned to 2008 numbers. It predicted gas prices falling slightly by 2016, to $${ Highcharts.numberFormat(this.dataSource[2]['2016'], 2) }.`);
-                backfillSeries.call(this, 2, 2008, 2011).then(() => {
+                fillSeries.call(this, 2, 2008, 2011).then(() => {
                     togglePoint.call(this, 2);
                     setTimeout(() => {
                         togglePoint.call(this, 2);
-                        backfillSeries.call(this, 2, 2012, 2016).then(() => {
+                        fillSeries.call(this, 2, 2012, 2016).then(() => {
                             togglePoint.call(this, 2);
                             resolve(true);
                         });
@@ -109,7 +109,7 @@ function customUpdate(isReplay){ // update function for this chart only
             function(resolve){ // step 6
                 togglePoint.call(this,0);
                 annotate.call(this, 0, `The actual prices, however, remained lower than both estimates.`);
-                backfillSeries.call(this, 0, 2010, 2016).then(() => {
+                fillSeries.call(this, 0, 2010, 2016).then(() => {
                     togglePoint.call(this,0);
                     resolve(true);
                 });
@@ -117,18 +117,19 @@ function customUpdate(isReplay){ // update function for this chart only
             function(resolve){ // step 8
                 togglePoint.call(this,1);
                 togglePoint.call(this,2);
-                backfillSeries.call(this, 1, 2017, 2030).then(() => {
+                fillSeries.call(this, 1, 2017, 2030).then(() => {
                     togglePoint.call(this,1);
-                    backfillSeries.call(this, 2, 2017, 2035).then(() => {
+                    fillSeries.call(this, 2, 2017, 2035).then(() => {
                         togglePoint.call(this,2);
+                        this.previousChange.extremes[this.currentStep] = [this.Highchart.xAxis[0].min, this.Highchart.xAxis[0].max];
                         this.Highchart.axes[0].setExtremes(2000,2035);
                         setTimeout(() => {
                             annotate.call(this, 3, `The 2016 Annual Energy Outlook, with projections pinned to 2014 numbers, predicts lower gas prices than the previous two.`);
-                            backfillSeries.call(this, 3, 2014, 2016).then(() => {
+                            fillSeries.call(this, 3, 2014, 2016).then(() => {
                                 togglePoint.call(this, 3);
                                 setTimeout(() => {
                                     togglePoint.call(this, 3);
-                                    backfillSeries.call(this, 3, 2017, 2035)
+                                    fillSeries.call(this, 3, 2017, 2035)
                                     togglePoint.call(this, 3);
                                     resolve(true);
                                 }, 1000);
@@ -140,7 +141,7 @@ function customUpdate(isReplay){ // update function for this chart only
             function(resolve){ // step 6
                 togglePoint.call(this,0);
                 annotate.call(this, 0, `Prices have risen since then but remain below the estimates.`);
-                backfillSeries.call(this, 0, 2017, 2017).then(() => {
+                fillSeries.call(this, 0, 2017, 2017).then(() => {
                     togglePoint.call(this,0);
                     resolve(true);
                     //this.animateNext();
@@ -149,9 +150,7 @@ function customUpdate(isReplay){ // update function for this chart only
             
             function(resolve){ // step 12
                 this.Highchart.annotations[this.Highchart.annotations.length - 1].setVisible(false);
-                this.hideShowElements.forEach(el => {
-                    el.style.opacity = 1;
-                });
+               
                 this.Highchart.update({plotOptions: {series: {enableMouseTracking: true}}});
                 resolve(true);
             }
@@ -160,6 +159,7 @@ function customUpdate(isReplay){ // update function for this chart only
             console.log(this.currentStep);
             this.previousChange.points[this.currentStep] = [];
             this.previousChange.annotations[this.currentStep] = [];
+            this.previousChange.extremes[this.currentStep] = [];
             
             var promise = new Promise((resolve, reject) => {
                 this.animationSteps[this.currentStep].call(this,resolve);
@@ -189,7 +189,9 @@ function customUpdate(isReplay){ // update function for this chart only
             }
         };
         this.animatePrevious = function(){
-            console.log(this.previousChange.annotations[this.currentStep - 1]);
+            if ( this.previousChange.extremes[this.currentStep - 1].length > 0 ){
+                this.Highchart.axes[0].setExtremes(...this.previousChange.extremes[this.currentStep - 1]);
+            }
             this.previousChange.annotations[this.currentStep - 1].forEach(note => {
                 //note.setVisible(false);
                 var index = this.Highchart.annotations.indexOf(note);
@@ -200,15 +202,33 @@ function customUpdate(isReplay){ // update function for this chart only
                     note.setVisible(true);
                 }
             });
-            this.previousChange.points[this.currentStep - 1].forEach(pt => {
+            this.previousChange.points[this.currentStep - 1].forEach((pt, i) => {
+                console.log(pt)
+                var seriesIndex = pt.series.index; // primitive value so shouldn't change after pt is removed
                 pt.remove();
+                //console.log(this.Highchart.series[seriesIndex]);
+                togglePoint.call(this,seriesIndex);
             });
           /*  this.previousChange.annotations[this.currentStep].forEach(note => {
                var index = console.log(this.Highchart.annotations.indexOf(note));
                this.Highchart.removeAnnotation(index);
             });*/
+            this.renderedNext.classList.remove('disabled');
+            this.renderedPrevious.classList.remove('disabled');
             this.currentStep--;
-            console.log(this);
+            if ( this.currentStep < this.animationSteps.length ){
+                this.renderedNext.classList.add('show');
+            } else {
+                this.renderedNext.classList.remove('show');
+            }
+            if ( this.currentStep > 1 ){
+                this.renderedPrevious.classList.add('show');
+            } else {
+                this.renderedPrevious.classList.remove('show');
+            }
+            this.previousChange.annotations.pop();
+            this.previousChange.points.pop();
+            console.log(this.previousChange);
         };
     }
 }
