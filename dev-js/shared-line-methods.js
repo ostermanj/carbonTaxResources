@@ -1,9 +1,20 @@
 export const sharedLineMethods = { // as an exported module `this` depends on context in which method is called
 
-    updateChart(){
-                            
+    updateChart(){ 
+        this.initialPointsToShow.forEach(pair => {
+            sharedLineMethods.togglePoint.call(this,pair[0],pair[1]);
+        });
+        sharedLineMethods.createPlayButton.call(this);
+        sharedLineMethods.createOverlayReplay.call(this);
     },
     prepAnimation(){
+
+        this.previousChange = {
+            points: [],
+            annotations: [],
+            extremes: []
+        };
+        this.currentStep = 0;
         var duration = this.Highchart.userOptions.chart.animation.duration;
         this.Highchart.update({plotOptions: {series: {enableMouseTracking: false}}});
         this.Highchart.renderTo.querySelector('.overlay-replay').style.opacity = 0;
@@ -20,11 +31,88 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         this.Highchart.update({series: this.series});
 
         sharedLineMethods.createNextAndPrevious.call(this);
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(true);
-            }, duration);
+        setTimeout(() => {
+            sharedLineMethods.animateNext.call(this);
+        }, duration);
+    },
+    animateNext(){
+        console.log(this.currentStep);
+        this.previousChange.points[this.currentStep] = [];
+        this.previousChange.annotations[this.currentStep] = [];
+        this.previousChange.extremes[this.currentStep] = [];
+        
+        var promise = new Promise((resolve, reject) => {
+            this.animationSteps[this.currentStep].call(this,resolve);
         });
+        console.log(promise);
+
+        promise.then(() => {
+            console.log('resolved');
+            incrementStep.call(this);
+        });
+        function incrementStep(){
+            this.renderedNext.classList.remove('disabled');
+            this.renderedPrevious.classList.remove('disabled');
+            this.currentStep++;
+            console.log(this.currentStep);
+            
+            if ( this.currentStep < this.animationSteps.length ){
+                this.renderedNext.classList.add('show');
+            } else {
+                this.renderedNext.classList.remove('show');
+            }
+            if ( this.currentStep > 1 && this.currentStep < this.animationSteps.length  ){
+                this.renderedPrevious.classList.add('show');
+            } else {
+                this.renderedPrevious.classList.remove('show');
+            }
+            if ( this.currentStep === this.animationSteps.length ){
+                this.Highchart.renderTo.querySelector('.overlay-replay').style.opacity = 1;
+                this.currentStep = 0;
+            }
+        }
+    },
+    animatePrevious(){
+        if ( this.previousChange.extremes[this.currentStep - 1].length > 0 ){
+            this.Highchart.axes[0].setExtremes(...this.previousChange.extremes[this.currentStep - 1]);
+        }
+        this.previousChange.annotations[this.currentStep - 1].forEach(note => {
+            //note.setVisible(false);
+            var index = this.Highchart.annotations.indexOf(note);
+            this.Highchart.removeAnnotation(index);
+        });
+        this.previousChange.annotations[this.currentStep - 2].forEach((note,i,array) => {
+            if ( i === array.length - 1 ){
+                note.setVisible(true);
+            }
+        });
+        this.previousChange.points[this.currentStep - 1].forEach((pt, i) => {
+            console.log(pt)
+            var seriesIndex = pt.series.index; // primitive value so shouldn't change after pt is removed
+            pt.remove();
+            //console.log(this.Highchart.series[seriesIndex]);
+            togglePoint.call(this,seriesIndex);
+        });
+      /*  this.previousChange.annotations[this.currentStep].forEach(note => {
+           var index = console.log(this.Highchart.annotations.indexOf(note));
+           this.Highchart.removeAnnotation(index);
+        });*/
+        this.renderedNext.classList.remove('disabled');
+        this.renderedPrevious.classList.remove('disabled');
+        this.currentStep--;
+        if ( this.currentStep < this.animationSteps.length ){
+            this.renderedNext.classList.add('show');
+        } else {
+            this.renderedNext.classList.remove('show');
+        }
+        if ( this.currentStep > 1 ){
+            this.renderedPrevious.classList.add('show');
+        } else {
+            this.renderedPrevious.classList.remove('show');
+        }
+        this.previousChange.annotations.pop();
+        this.previousChange.points.pop();
+        console.log(this.previousChange);
     },
     createNextAndPrevious(){
         var triNext = document.createElement('div');
@@ -43,18 +131,18 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         this.renderedNext.onclick = () => {
             console.log(this);
             disableNextAndPrevious.call(this);
-            this.animateNext.call(this);
+            sharedLineMethods.animateNext.call(this);
         };
         this.renderedPrevious.onclick = () => {
             disableNextAndPrevious.call(this);
-            this.animatePrevious.call(this);
+            sharedLineMethods.animatePrevious.call(this);
         }
         function disableNextAndPrevious(){
             this.renderedPrevious.classList.add('disabled');
             this.renderedNext.classList.add('disabled');
         }
     },
-    createOverlayReplay(replayFn){
+    createOverlayReplay(){
         var replay = document.createElement('button');
         replay.className = 'overlay-replay magazine-button--small';
         replay.setAttribute('title','Click or tap replay the animation');
@@ -63,7 +151,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         var btn = this.Highchart.renderTo.querySelector('.overlay-replay');
         btn.style.opacity = 0;
         btn.onclick = () => {
-            replayFn.call(this);
+            sharedLineMethods.prepAnimation.call(this);
         };
     },
     createSeries(data){ 
@@ -264,7 +352,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         }
         lastPoint.select(null, true);
     },
-    createPlayButton(onclickFn){
+    createPlayButton(){
         var playButton = document.createElement('div');
         playButton.setAttribute('title','Click or tap to start animation');
         playButton.setAttribute('tabindex', 0);
@@ -280,7 +368,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         var renderedPlayButton = this.Highchart.renderTo.querySelector('#play-button');
         var renderedDismiss = this.Highchart.renderTo.querySelector('.dismiss-button');
         renderedPlayButton.onclick = () => {
-            onclickFn.call(this);
+            sharedLineMethods.prepAnimation.call(this);
             removeOverlay.call(this);
         };
         renderedDismiss.onclick = (e) => {
