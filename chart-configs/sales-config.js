@@ -50,7 +50,7 @@ function customUpdate(){ // update function for this chart only
     
     this.animationSteps = [
         function(resolve){ // step 0
-            annotate.call(this, 0, `From 2000 to 2007, electricity sales rose to ${ Highcharts.numberFormat(this.dataSource[0]['2007'], 0) } TWh befor falling to ${ Highcharts.numberFormat(this.dataSource[0]['2009'], 0) } in 2009, partly in response to the Great Recession.`);
+            annotate.call(this, 0, `From 2000 to 2007, electricity sales rose to ${ Highcharts.numberFormat(this.dataSource[0]['2007'], 0) } TWh before falling to ${ Highcharts.numberFormat(this.dataSource[0]['2009'], 0) } in 2009, partly in response to the Great Recession.`);
              fillSeries.call(this, 0, 2000, 2009).then(() => {
                 this.Highchart.series[0].points[0].select(true, true);
                 togglePoint.call(this, 0, 'last');
@@ -185,7 +185,7 @@ export default {
         }
     },
     subtitle: {
-        text: 'Estimates have flattened over the years as actual demand has fallen short of expectations.'
+        text: null
     },           
     title: {
         text: 'U.S. electricity demand, actual and estimated',
@@ -198,7 +198,16 @@ export default {
         min: 2000,
         max: 2035,
         startMax: 2017,
-        startMin: 2000
+        startMin: 2000,
+        plotBands: [{
+            from: 2007.9,
+            to: 2009.5,
+            label: {
+                text: 'Great Recession',
+                align: 'right',
+                textAlign: 'left'
+            }
+        }]
     },
     yAxis: {
         max: 5000,

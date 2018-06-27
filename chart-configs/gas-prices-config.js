@@ -50,7 +50,7 @@ function customUpdate(isReplay){ // update function for this chart only
 
     this.animationSteps = [
         function(resolve){ // step 0
-            annotate.call(this, 0, `From 2000 to 2009, natural gas prices ranged from a low of $${ Highcharts.numberFormat(this.dataSource[0]['2002'], 2) } per million Btu in 2002 to $${ Highcharts.numberFormat(this.dataSource[0]['2005'], 2) } in 2005.`);
+            annotate.call(this, 0, `From 2000 to 2009, natural gas prices ranged from a low of $${ Highcharts.numberFormat(this.dataSource[0]['2002'], 2) } per million Btu in 2002 to $${ Highcharts.numberFormat(this.dataSource[0]['2005'], 2) } in 2005. They fell sharply after 2008, partly in respinse to the Great Recession.`);
              fillSeries.call(this, 0, 2000, 2009).then(() => {
                 this.Highchart.series[0].points[0].select(true, true);
                 togglePoint.call(this, 0, 'last');
@@ -196,7 +196,16 @@ export default {
         min: 2000,
         max: 2035,
         startMin: 2000,
-        startMax: 2017
+        startMax: 2017,
+        plotBands: [{
+            from: 2007.9,
+            to: 2009.5,
+            label: {
+                text: 'Great Recession',
+                align: 'right',
+                textAlign: 'left'
+            }
+        }]
     },
     yAxis: {
         allowDecimals: false,

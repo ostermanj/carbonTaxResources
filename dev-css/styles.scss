@@ -22,6 +22,10 @@
   }
 }
 
+.highcharts-plot-band {
+  fill-opacity: 0.1;
+}
+
 .highcharts-annotation, .highcharts-annotation-labels, .highcharts-annotation-label {
   width: 100%;
 }
@@ -56,9 +60,11 @@
     &.full {
       top: 0 !important;
       span {
-        top: 0 !important;
-        max-width: 100%;
-        left: 0 !important;
+          top: 73px !important;
+          max-width: 100%;
+          left: 0 !important;
+          transform: translate(0,-100%);
+          min-height: 64px;
 
       }
     }
@@ -271,6 +277,7 @@ g.highcharts-annotation[visibility="hidden"]{
     font-size: 0.85em;
     line-height: inherit;
     height: initial;
+    overflow: visible;
     //background: transparent url('//www.rff.org/files/rff-logo-small.png') no-repeat 45px bottom;
     //background-image-size: 50%;
  }
@@ -285,12 +292,12 @@ g.highcharts-annotation[visibility="hidden"]{
 
 }
 
-.highcharts-stack-labels, .highcharts-axis-labels, .highcharts-legend-item text {
+.highcharts-stack-labels, .highcharts-axis-labels, .highcharts-legend-item text, .highcharts-plot-band-label  {
     font-size: 0.85em;
   
 }
 
-.highcharts-axis-title, .highcharts-axis-labels, .highcharts-subtitle, .highcharts-legend-item text {
+.highcharts-axis-title, .highcharts-axis-labels, .highcharts-subtitle, .highcharts-legend-item text, .highcharts-plot-band-label  {
       fill: #58585b;
       font-weight: normal;
 }
