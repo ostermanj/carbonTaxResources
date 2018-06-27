@@ -16,7 +16,10 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         };
         this.currentStep = 0;
         var duration = this.Highchart.userOptions.chart.animation.duration;
-        this.Highchart.update({plotOptions: {series: {enableMouseTracking: false}}});
+        this.Highchart.update({plotOptions: {series: {
+            enableMouseTracking: false,
+            allowPointSelect: true
+        }}});
         this.Highchart.renderTo.querySelector('.overlay-replay').style.opacity = 0;
 
         this.Highchart.renderTo.classList.remove('faded');
@@ -74,7 +77,9 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
     },
     animatePrevious(){
         if ( this.previousChange.extremes[this.currentStep - 1].length > 0 ){
-            this.Highchart.axes[0].setExtremes(...this.previousChange.extremes[this.currentStep - 1]);
+            console.log(this.previousChange.extremes[this.currentStep - 1]);
+            this.Highchart.xAxis[0].setExtremes(...this.previousChange.extremes[this.currentStep - 1][0]);
+            this.Highchart.yAxis[0].setExtremes(...this.previousChange.extremes[this.currentStep - 1][1]);
         }
         this.previousChange.annotations[this.currentStep - 1].forEach(note => {
             //note.setVisible(false);
@@ -372,7 +377,10 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             removeOverlay.call(this);
         };
         renderedDismiss.onclick = (e) => {
-            this.Highchart.update({plotOptions: {series: {enableMouseTracking: true}}});
+            this.Highchart.update({plotOptions: {series: {
+                enableMouseTracking: true,
+                allowPointSelect: false
+            }}});
             removeOverlay.call(this);
         };
         function removeOverlay(){

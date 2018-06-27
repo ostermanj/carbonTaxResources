@@ -99,7 +99,7 @@ function customUpdate(isReplay){ // update function for this chart only
                 togglePoint.call(this,1);
                 fillSeries.call(this, 2, 2017, 2035).then(() => {
                     togglePoint.call(this,2);
-                    this.previousChange.extremes[this.currentStep] = [this.Highchart.xAxis[0].min, this.Highchart.xAxis[0].max];
+                    this.previousChange.extremes[this.currentStep] = [[this.Highchart.xAxis[0].min, this.Highchart.xAxis[0].max],[this.Highchart.yAxis[0].min, this.Highchart.yAxis[0].max]];
                     this.Highchart.axes[0].setExtremes(2000,2035);
                     setTimeout(() => {
                         annotate.call(this, 3, `The 2016 Annual Energy Outlook, with projections pinned to 2014 numbers, predicts lower gas prices than the previous two.`);
@@ -129,7 +129,10 @@ function customUpdate(isReplay){ // update function for this chart only
         function(resolve){ // step 12
             this.Highchart.annotations[this.Highchart.annotations.length - 1].setVisible(false);
            
-            this.Highchart.update({plotOptions: {series: {enableMouseTracking: true}}});
+            this.Highchart.update({plotOptions: {series: {
+                enableMouseTracking: true,
+                allowPointSelect: false
+            }}});
             resolve(true);
         }
     ];
@@ -193,7 +196,7 @@ export default {
         min: 2000,
         max: 2035,
         startMin: 2000,
-        startMax: 2016
+        startMax: 2017
     },
     yAxis: {
         allowDecimals: false,
