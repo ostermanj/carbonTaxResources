@@ -71,7 +71,7 @@ var fullAPI = (function(){
                     }
                 });
             } else {
-                window.addEventListener('load', function(){
+                window.addEventListener('load', () => {
                     clearTimeout(initTimer);
                     if ( !this.isInitialized ){ 
                         this.initCharts(chartConfigs);

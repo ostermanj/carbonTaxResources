@@ -26,8 +26,8 @@
   width: 100%;
 }
 .highcharts-annotation-label {
-    right: unset !important;
-    left: unset !important;
+    right: auto !important;
+    left: auto !important;
     span {
       background-color: rgba(255,255,255,0.8);
       border: 1px solid #58585b;
@@ -44,7 +44,7 @@
     }
     &.right {
       span {
-        left: unset !important;
+        left: auto !important;
         right: 0;
       }
     }

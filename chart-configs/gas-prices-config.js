@@ -118,7 +118,7 @@ function customUpdate(isReplay){ // update function for this chart only
         },
         function(resolve){ // step 6
             togglePoint.call(this,0);
-            annotate.call(this, 0, `Prices have risen since then but remain below the estimates.`);
+            annotate.call(this, 0, `Prices have risen since then but remain below the estimates. Lower-than-expected gas prices have big consequences for estimates of future baseline emissions and the effects of carbon taxes.`);
             fillSeries.call(this, 0, 2017, 2017).then(() => {
                 togglePoint.call(this,0);
                 resolve(true);

@@ -91,7 +91,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             var seriesIndex = pt.series.index; // primitive value so shouldn't change after pt is removed
             pt.remove();
             //console.log(this.Highchart.series[seriesIndex]);
-            togglePoint.call(this,seriesIndex);
+            sharedLineMethods.togglePoint.call(this,seriesIndex);
         });
       /*  this.previousChange.annotations[this.currentStep].forEach(note => {
            var index = console.log(this.Highchart.annotations.indexOf(note));
@@ -372,7 +372,6 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
             removeOverlay.call(this);
         };
         renderedDismiss.onclick = (e) => {
-            console.log(this, HighchartApp);
             this.Highchart.update({plotOptions: {series: {enableMouseTracking: true}}});
             removeOverlay.call(this);
         };
