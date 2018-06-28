@@ -1,3 +1,4 @@
+import GAEventHandler from '../dev-js/ga-event-handler.js';
 export default function(options, j){
     //var container = document.createElement('div');
     //container.className = ' form-container flex space-between';
@@ -31,6 +32,7 @@ export default function(options, j){
     var rendered = container.querySelector('form');
     rendered.querySelectorAll('input').forEach(input => {
         input.onchange = function(){
+            GAEventHandler('selectUserOption', options.title);
             options.updateFunction.call(options,this.value);
         };
     }); 

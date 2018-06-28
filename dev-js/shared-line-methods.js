@@ -1,3 +1,4 @@
+import GAEventHandler from './ga-event-handler.js';
 export const sharedLineMethods = { // as an exported module `this` depends on context in which method is called
 
     updateChart(){ 
@@ -135,10 +136,12 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         this.renderedPrevious = this.Highchart.renderTo.querySelector('.triangle-previous');
         this.renderedNext.onclick = () => {
             console.log(this);
+            GAEventHandler('animateNext', this.title);
             disableNextAndPrevious.call(this);
             sharedLineMethods.animateNext.call(this);
         };
         this.renderedPrevious.onclick = () => {
+            GAEventHandler('animatePrevious', this.title);
             disableNextAndPrevious.call(this);
             sharedLineMethods.animatePrevious.call(this);
         }
@@ -156,6 +159,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         var btn = this.Highchart.renderTo.querySelector('.overlay-replay');
         btn.style.opacity = 0;
         btn.onclick = () => {
+            GAEventHandler('replayAnimation', this.title);
             sharedLineMethods.prepAnimation.call(this);
         };
     },
@@ -373,10 +377,12 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         var renderedPlayButton = this.Highchart.renderTo.querySelector('#play-button');
         var renderedDismiss = this.Highchart.renderTo.querySelector('.dismiss-button');
         renderedPlayButton.onclick = () => {
+            GAEventHandler('playAnimation', this.title);
             sharedLineMethods.prepAnimation.call(this);
             removeOverlay.call(this);
         };
         renderedDismiss.onclick = (e) => {
+            GAEventHandler('skipAnimation', this.title);
             this.Highchart.update({plotOptions: {series: {
                 enableMouseTracking: true,
                 allowPointSelect: false
