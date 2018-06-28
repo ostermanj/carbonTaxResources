@@ -50,7 +50,7 @@ function customUpdate(isReplay){ // update function for this chart only
 
     this.animationSteps = [
         function(resolve){ // step 0
-            annotate.call(this, 0, `From 2000 to 2009, natural gas prices ranged from a low of $${ Highcharts.numberFormat(this.dataSource[0]['2002'], 2) } per million Btu in 2002 to $${ Highcharts.numberFormat(this.dataSource[0]['2005'], 2) } in 2005. They fell sharply after 2008, partly in respinse to the Great Recession.`);
+            annotate.call(this, 0, `From 2000 to 2009, natural gas prices ranged from a low of $${ Highcharts.numberFormat(this.dataSource[0]['2002'], 2) } per million Btu in 2002 to $${ Highcharts.numberFormat(this.dataSource[0]['2005'], 2) } in 2005. They fell sharply after 2008, partly in response to the Great Recession.`);
              fillSeries.call(this, 0, 2000, 2009).then(() => {
                 this.Highchart.series[0].points[0].select(true, true);
                 togglePoint.call(this, 0, 'last');
@@ -72,7 +72,7 @@ function customUpdate(isReplay){ // update function for this chart only
             });
         },
         function(resolve){ // step 5
-            annotate.call(this, 2, `In 2011, another Annual Energy Outlook was released, with projections pinned to 2008 numbers. It predicted gas prices falling slightly by 2016, to $${ Highcharts.numberFormat(this.dataSource[2]['2016'], 2) }.`);
+            annotate.call(this, 2, `In 2011, an Annual Energy Outlook was released with projections pinned to 2008 numbers. It predicted gas prices falling slightly by 2016, to $${ Highcharts.numberFormat(this.dataSource[2]['2016'], 2) }.`);
             fillSeries.call(this, 2, 2008, 2011).then(() => {
                 togglePoint.call(this, 2);
                 setTimeout(() => {
@@ -102,7 +102,7 @@ function customUpdate(isReplay){ // update function for this chart only
                     this.previousChange.extremes[this.currentStep] = [[this.Highchart.xAxis[0].min, this.Highchart.xAxis[0].max],[this.Highchart.yAxis[0].min, this.Highchart.yAxis[0].max]];
                     this.Highchart.axes[0].setExtremes(2000,2035);
                     setTimeout(() => {
-                        annotate.call(this, 3, `The 2016 Annual Energy Outlook, with projections pinned to 2014 numbers, predicts lower gas prices than the previous two.`);
+                        annotate.call(this, 3, `The 2016 Annual Energy Outlook, with projections pinned to 2014 numbers, predicted lower gas prices than the previous two.`);
                         fillSeries.call(this, 3, 2014, 2016).then(() => {
                             togglePoint.call(this, 3);
                             setTimeout(() => {

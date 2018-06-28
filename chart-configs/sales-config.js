@@ -75,7 +75,7 @@ function customUpdate(){ // update function for this chart only
             })
         },
         function(resolve){ // step 5
-            annotate.call(this, 2, `In 2011, another Annual Energy Outlook was released with projections pinned to 2008 numbers. It predicted sales increasing to ${ Highcharts.numberFormat(this.dataSource[2]['2016'], 0) } TWh in 2016.`);
+            annotate.call(this, 2, `In 2011, another Annual Energy Outlook was released, with projections pinned to 2008 numbers. It predicted sales increasing to ${ Highcharts.numberFormat(this.dataSource[2]['2016'], 0) } TWh in 2016.`);
             fillSeries.call(this, 2, 2008, 2011).then(() => {
                 togglePoint.call(this, 2);
                 setTimeout(() => {
@@ -107,7 +107,7 @@ function customUpdate(){ // update function for this chart only
                     this.Highchart.xAxis[0].setExtremes(2000,2035);
                     this.Highchart.yAxis[0].setExtremes(3500,5000);
                     setTimeout(() => {
-                        annotate.call(this, 3, `In 2016, another Annual Energy Outlook was released, with projections pinned to 2014 numbers. It predicted sales increasing through 2035, although at slower rate than the previous estimates.`);
+                        annotate.call(this, 3, `The 2016 Annual Energy Outlook, with projections pinned to 2014 numbers, predicted sales increasing through 2035, although at slower rate than the previous estimates.`);
                         fillSeries.call(this, 3, 2014, 2016).then(() => {
                             togglePoint.call(this, 3);
                             setTimeout(() => {
