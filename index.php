@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/js/highcharts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/js/modules/annotations.js"></script>
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/js/highcharts.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/js/modules/annotations.js"></script>
+<script src="http://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/css/highcharts.css" />
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/css/highcharts.css" />
 <link rel="stylesheet" type="text/css" href="http://0.0.0.0:8000/dev-css/styles.css" />
 <figure>
     <h4>Estimates of Natural Gas Prices Have Declined in Response to Fracking Boom</h4>
