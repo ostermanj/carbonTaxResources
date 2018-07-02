@@ -64,8 +64,8 @@ export default {
     seriesCreator: sharedMethods.createBarSeries,
     updateFunction: sharedMethods.updateChart,
     userOptions: sharedMethods.userOptions,
-    note: 'Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
+    note: 'RFF Haiku model estimates based on Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
           'Estimates from 2016 do not have the “high demand and gas prices” scenario. ' + 
           'Estimates from 2011 for the “high gas prices” and “high demand” scenarios are not available for the the $50/ton tax option. ' + 
-          'Carbon-tax levels change over time—dollar amounts correspond to 2018 levels. Source: U.S. Energy Information Administration.',
+          'Carbon-tax levels change over time—dollar amounts correspond to 2018 levels. Source: RFF Haiku model output.',
 };
