@@ -326,6 +326,13 @@ g.shortdot path {
       fill: #58585b;
       font-weight: normal;
 }
+
+.decomposition .highcharts-xaxis-labels > span, .generation .highcharts-xaxis-labels > span {
+  border-top: 1px solid #aaa;
+  line-height: 130%;
+
+}
+
 .highcharts-subtitle {
     line-height:1.25em;
 }

@@ -9,7 +9,7 @@ function customUpdate(isReplay){ // update function for this chart only
         zoneAxis:'x',
         zones: [{
             className: 'anchor',
-            value: 2009
+            value: 2008
         },{
             className:'projection',
             value: undefined
@@ -19,7 +19,7 @@ function customUpdate(isReplay){ // update function for this chart only
         zoneAxis:'x',
         zones: [{
             className: 'anchor',
-            value: 2011
+            value: 2010
         },{
             className:'projection',
             value: undefined
@@ -59,7 +59,7 @@ function customUpdate(isReplay){ // update function for this chart only
         },
         
         function(resolve){ // step 2,3
-            annotate.call(this, 1, `In 2009, an Annual Energy Outlook was released with projections pinned to 2006 numbers. It predicted prices increasing slightly to $${ Highcharts.numberFormat(this.dataSource[1]['2016'], 2) } in 2016.`);
+            annotate.call(this, 1, `In 2009, an Annual Energy Outlook was released with projections for 2008 through 2030 (data for years before 2008 are observations). It predicted prices increasing slightly to $${ Highcharts.numberFormat(this.dataSource[1]['2016'], 2) } in 2016.`);
              fillSeries.call(this, 1, 2006, 2009).then(() => {
                 togglePoint.call(this, 1);
                 setTimeout(() => {
@@ -72,7 +72,7 @@ function customUpdate(isReplay){ // update function for this chart only
             });
         },
         function(resolve){ // step 5
-            annotate.call(this, 2, `In 2011, an Annual Energy Outlook was released with projections pinned to 2008 numbers. It predicted gas prices falling slightly by 2016, to $${ Highcharts.numberFormat(this.dataSource[2]['2016'], 2) }.`);
+            annotate.call(this, 2, `In 2011, an Annual Energy Outlook was released with projections for 2010 through 2035 (data for years before 2010 are observations). It predicted gas prices falling slightly by 2016, to $${ Highcharts.numberFormat(this.dataSource[2]['2016'], 2) }.`);
             fillSeries.call(this, 2, 2008, 2011).then(() => {
                 togglePoint.call(this, 2);
                 setTimeout(() => {
@@ -86,7 +86,7 @@ function customUpdate(isReplay){ // update function for this chart only
         },
         function(resolve){ // step 6
             togglePoint.call(this,0);
-            annotate.call(this, 0, `The actual prices, however, remained lower than both estimates.`);
+            annotate.call(this, 0, `The actual prices, however, remained lower than both projections.`);
             fillSeries.call(this, 0, 2010, 2016).then(() => {
                 togglePoint.call(this,0);
                 resolve(true);
@@ -102,7 +102,7 @@ function customUpdate(isReplay){ // update function for this chart only
                     this.previousChange.extremes[this.currentStep] = [[this.Highchart.xAxis[0].min, this.Highchart.xAxis[0].max],[this.Highchart.yAxis[0].min, this.Highchart.yAxis[0].max]];
                     this.Highchart.axes[0].setExtremes(2000,2035);
                     setTimeout(() => {
-                        annotate.call(this, 3, `The 2016 Annual Energy Outlook, with projections pinned to 2014 numbers, predicted lower gas prices than the previous two.`);
+                        annotate.call(this, 3, `The 2016 Annual Energy Outlook, with projections for 2016 through 2035, predicted lower gas prices than the previous two.`);
                         fillSeries.call(this, 3, 2014, 2016).then(() => {
                             togglePoint.call(this, 3);
                             setTimeout(() => {
@@ -118,7 +118,7 @@ function customUpdate(isReplay){ // update function for this chart only
         },
         function(resolve){ // step 6
             togglePoint.call(this,0);
-            annotate.call(this, 0, `Prices have risen since then but remain below the estimates. Lower-than-expected gas prices have big consequences for estimates of future baseline emissions and the effects of carbon taxes.`);
+            annotate.call(this, 0, `Prices have risen since then but remain below the projections. Lower-than-expected gas prices have big consequences for projections of future baseline emissions and the effects of carbon taxes.`);
             fillSeries.call(this, 0, 2017, 2017).then(() => {
                 togglePoint.call(this,0);
                 resolve(true);
@@ -185,7 +185,7 @@ export default {
         text: null
     },           
     title: {
-        text: 'U.S. natural gas prices to the electric power sector, actual and estimated',
+        text: 'U.S. natural gas prices to the electric power sector, actual and projected',
     },
     tooltip: {
         valueDecimals: 2,

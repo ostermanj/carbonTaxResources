@@ -5,7 +5,8 @@ console.log(sharedMethods);
 export default { 
     chart: { 
         type: 'column',   
-        height: 500
+        height: 500,
+        className: 'decomposition'
     },
     plotOptions: {
         column: {
@@ -13,7 +14,7 @@ export default {
         }
     },  
     subtitle: {
-        text: 'Reduced demand is a much smaller part of reducing emissions in the new estimates.'
+        text: 'Reduced demand is a much smaller part of reducing emissions in the new projections.'
     },           
     title: {
         /* extends Highcharts */
@@ -27,9 +28,10 @@ export default {
         valueSuffix: ' megatons'
     },
     xAxis: {
-        categories: ['Standard Scenario', 'High Gas Prices', 'High Demand', 'High Demand<br />and Gas Prices'], // TO DO: set programatically
+        categories: ['Standard<br />Scenario', 'High Gas Price<br/ >Scenario', 'High Demand<br />Scenario', 'High Demand and<br />Gas Price Scenario'], // TO DO: set programatically
         labels: {
-            y: 40 
+            y: 40,
+            useHTML: true
         }
     }, 
     yAxis: {
@@ -63,8 +65,8 @@ export default {
     seriesCreator: sharedMethods.createBarSeries,
     updateFunction: sharedMethods.updateChart,
     userOptions: sharedMethods.userOptions,
-    note: 'LMDI decomposition of emissions reductions from RFF Haiku model estimates based on Annual Energy Outlook estimates from 2011 (old) and 2016 (new). ' + 
-              'Estimates from 2016 do not have the “high demand and gas prices” scenario. ' + 
-              'Estimates from 2011 for the “high gas prices” and “high demand” scenarios are not available for the the $50/ton tax option. ' + 
+    note: 'LMDI decomposition of emissions reductions from RFF Haiku model projections based on Annual Energy Outlook projections from 2011 (old) and 2016 (new). ' + 
+              'Projections from 2016 do not have the “high demand and gas prices” scenario. ' + 
+              'Projections from 2011 for the “high gas prices” and “high demand” scenarios are not available for the the $50/ton tax option. ' + 
               'Carbon-tax levels change over time—dollar amounts correspond to 2018 levels. Source: RFF Haiku model output.',
 };
