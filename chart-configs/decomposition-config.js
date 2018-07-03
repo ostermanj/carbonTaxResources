@@ -14,7 +14,7 @@ export default {
         }
     },  
     subtitle: {
-        text: 'Reduced demand is a much smaller part of reducing emissions in the new projections.'
+        text: 'Shifts in generation mix play the largest role in reducing emissions. Its role is greater in the new projections while demand reductions play a diminished role.'
     },           
     title: {
         /* extends Highcharts */
