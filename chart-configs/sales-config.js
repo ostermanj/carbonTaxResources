@@ -188,7 +188,7 @@ export default {
         text: null
     },           
     title: {
-        text: 'U.S. electricity demand, actual and projected',
+        text: 'US electricity demand, actual and projected',
     },
     tooltip: {
         valueDecimals: 0,
@@ -233,5 +233,5 @@ export default {
         sharedLineMethods.updateChart.call(this);
     },
     initialUpdateParams: [],
-    note: '1 terawatt hour = 1 billion kilowatt hours. Sources: U.S. Energy Information Administration (EIA), Annual Energy Outlook (2009, 2011, and 2016); EIA Monthly Energy Review, April 2018.',
+    note: '1 terawatt hour = 1 billion kilowatt hours. Sources: US Energy Information Administration (EIA), Annual Energy Outlook (2009, 2011, and 2016); EIA Monthly Energy Review, April 2018.',
 };

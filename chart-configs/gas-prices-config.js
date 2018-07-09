@@ -185,7 +185,7 @@ export default {
         text: null
     },           
     title: {
-        text: 'U.S. natural gas prices to the electric power sector, actual and projected',
+        text: 'US natural gas prices to the electric power sector, actual and projected',
     },
     tooltip: {
         valueDecimals: 2,
@@ -234,5 +234,5 @@ export default {
         sharedLineMethods.updateChart.call(this);
     },
     initialUpdateParams: [],
-    note: 'Sources: U.S. Energy Information Administration (EIA), Annual Energy Outlook (2009, 2011, and 2016); EIA Monthly Energy Review, April 2018.',
+    note: 'Sources: US Energy Information Administration (EIA), Annual Energy Outlook (2009, 2011, and 2016); EIA Monthly Energy Review, April 2018.',
 };
