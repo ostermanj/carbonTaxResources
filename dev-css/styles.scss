@@ -98,7 +98,14 @@
       }
     }
   }*/
+.overflow-container {
+  width: 100%;
+  overflow-x: auto;
+}
 .chart-container {
+  &#chart-2, &#chart-3 {
+     min-width:465px;
+  }
   .triangle {
     width: 0;
     height: 0;
@@ -258,7 +265,7 @@ g.shortdot path {
 }
 
 .chart-container {
-  position: relative;
+  //position: relative;
   padding-bottom: 0.85em;
   margin-bottom:1em;
   transition: opacity 0.2s linear;

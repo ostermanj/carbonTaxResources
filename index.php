@@ -15,10 +15,14 @@
 </figure>
 <figure>
     <h4>New Projections Predict Much Less Coal-Fired Electricity, More from Renewables by 2030</h4>
-    <div id="chart-2" class="chart-container"></div>
+    <div class="overflow-container">
+        <div id="chart-2" class="chart-container"></div>
+    </div>
 </figure>
 <figure>
     <h4>New Projections Show Lower Overall Emissions and Greater Reductions from Shift to Renewables by 2030</h4>
-    <div id="chart-3" class="chart-container"></div>
+    <div class="overflow-container">
+        <div id="chart-3" class="chart-container"></div>
+    </div>
 </figure>
 <script src="http://0.0.0.0:8000/js/index.js"></script>
