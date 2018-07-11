@@ -32,7 +32,7 @@ export default function(options, j){
     var rendered = container.querySelector('form');
     rendered.querySelectorAll('input').forEach(input => {
         input.onchange = function(){
-            GAEventHandler('selectUserOption', options.title);
+            GAEventHandler('selectUserOption', this.value + '--' + options.chart.className);
             options.updateFunction.call(options,this.value);
         };
     }); 

@@ -164,6 +164,7 @@ export default {
             duration: 550,
             easing: 'linear'
         },
+        className: 'sales',
         type: 'line',   
         height: 500,
     },

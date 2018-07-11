@@ -12,7 +12,7 @@ export default function(options){
     var rendered = options.Highchart.renderTo.querySelector('select');
     rendered.value = options.initialCategory;
     rendered.onchange = function(){
-        GAEventHandler('selectUserOption', this.value + '-' + options.title);
+        GAEventHandler('selectUserOption', this.value + '--' + options.chart.className);
         options.updateFunction.call(options,rendered.value);
     };
 };

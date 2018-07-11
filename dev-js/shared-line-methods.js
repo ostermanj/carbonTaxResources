@@ -136,12 +136,12 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         this.renderedPrevious = this.Highchart.renderTo.querySelector('.triangle-previous');
         this.renderedNext.onclick = () => {
             console.log(this);
-            GAEventHandler('animateNext', this.title);
+            GAEventHandler('animateNext', this.chart.className);
             disableNextAndPrevious.call(this);
             sharedLineMethods.animateNext.call(this);
         };
         this.renderedPrevious.onclick = () => {
-            GAEventHandler('animatePrevious', this.title);
+            GAEventHandler('animatePrevious', this.chart.className);
             disableNextAndPrevious.call(this);
             sharedLineMethods.animatePrevious.call(this);
         }
@@ -159,7 +159,7 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         var btn = this.Highchart.renderTo.querySelector('.overlay-replay');
         btn.style.opacity = 0;
         btn.onclick = () => {
-            GAEventHandler('replayAnimation', this.title);
+            GAEventHandler('replayAnimation', this.chart.className);
             sharedLineMethods.prepAnimation.call(this);
         };
     },
@@ -377,12 +377,12 @@ export const sharedLineMethods = { // as an exported module `this` depends on co
         var renderedPlayButton = this.Highchart.renderTo.querySelector('#play-button');
         var renderedDismiss = this.Highchart.renderTo.querySelector('.dismiss-button');
         renderedPlayButton.onclick = () => {
-            GAEventHandler('playAnimation', this.title);
+            GAEventHandler('playAnimation', this.chart.className);
             sharedLineMethods.prepAnimation.call(this);
             removeOverlay.call(this);
         };
         renderedDismiss.onclick = (e) => {
-            GAEventHandler('skipAnimation', this.title);
+            GAEventHandler('skipAnimation', this.chart.className);
             this.Highchart.update({plotOptions: {series: {
                 enableMouseTracking: true,
                 allowPointSelect: false

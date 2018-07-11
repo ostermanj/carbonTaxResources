@@ -161,6 +161,7 @@ export default {
             duration: 550,
             easing: 'linear'
         },
+        className: 'gas-prices',
         type: 'line',   
         height: 500,
     },
